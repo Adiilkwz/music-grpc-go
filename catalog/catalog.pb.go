@@ -21,31 +21,27 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type Song struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	Id              int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Title           string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	ArtistName      string                 `protobuf:"bytes,3,opt,name=artist_name,json=artistName,proto3" json:"artist_name,omitempty"`
-	CoverImageUrl   string                 `protobuf:"bytes,4,opt,name=cover_image_url,json=coverImageUrl,proto3" json:"cover_image_url,omitempty"`
-	DurationSeconds int32                  `protobuf:"varint,5,opt,name=duration_seconds,json=durationSeconds,proto3" json:"duration_seconds,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+type SuccessResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Song) Reset() {
-	*x = Song{}
+func (x *SuccessResponse) Reset() {
+	*x = SuccessResponse{}
 	mi := &file_catalog_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Song) String() string {
+func (x *SuccessResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Song) ProtoMessage() {}
+func (*SuccessResponse) ProtoMessage() {}
 
-func (x *Song) ProtoReflect() protoreflect.Message {
+func (x *SuccessResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_catalog_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -57,286 +53,91 @@ func (x *Song) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Song.ProtoReflect.Descriptor instead.
-func (*Song) Descriptor() ([]byte, []int) {
+// Deprecated: Use SuccessResponse.ProtoReflect.Descriptor instead.
+func (*SuccessResponse) Descriptor() ([]byte, []int) {
 	return file_catalog_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Song) GetId() int64 {
+func (x *SuccessResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+type Artist struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Bio           string                 `protobuf:"bytes,3,opt,name=bio,proto3" json:"bio,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Artist) Reset() {
+	*x = Artist{}
+	mi := &file_catalog_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Artist) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Artist) ProtoMessage() {}
+
+func (x *Artist) ProtoReflect() protoreflect.Message {
+	mi := &file_catalog_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Artist.ProtoReflect.Descriptor instead.
+func (*Artist) Descriptor() ([]byte, []int) {
+	return file_catalog_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *Artist) GetId() int64 {
 	if x != nil {
 		return x.Id
 	}
 	return 0
 }
 
-func (x *Song) GetTitle() string {
+func (x *Artist) GetName() string {
 	if x != nil {
-		return x.Title
+		return x.Name
 	}
 	return ""
 }
 
-func (x *Song) GetArtistName() string {
+func (x *Artist) GetBio() string {
 	if x != nil {
-		return x.ArtistName
+		return x.Bio
 	}
 	return ""
-}
-
-func (x *Song) GetCoverImageUrl() string {
-	if x != nil {
-		return x.CoverImageUrl
-	}
-	return ""
-}
-
-func (x *Song) GetDurationSeconds() int32 {
-	if x != nil {
-		return x.DurationSeconds
-	}
-	return 0
-}
-
-type GetSongRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	SongId        int64                  `protobuf:"varint,1,opt,name=song_id,json=songId,proto3" json:"song_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetSongRequest) Reset() {
-	*x = GetSongRequest{}
-	mi := &file_catalog_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetSongRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetSongRequest) ProtoMessage() {}
-
-func (x *GetSongRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_catalog_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetSongRequest.ProtoReflect.Descriptor instead.
-func (*GetSongRequest) Descriptor() ([]byte, []int) {
-	return file_catalog_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *GetSongRequest) GetSongId() int64 {
-	if x != nil {
-		return x.SongId
-	}
-	return 0
-}
-
-type GetSongResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Song          *Song                  `protobuf:"bytes,1,opt,name=song,proto3" json:"song,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetSongResponse) Reset() {
-	*x = GetSongResponse{}
-	mi := &file_catalog_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetSongResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetSongResponse) ProtoMessage() {}
-
-func (x *GetSongResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_catalog_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetSongResponse.ProtoReflect.Descriptor instead.
-func (*GetSongResponse) Descriptor() ([]byte, []int) {
-	return file_catalog_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *GetSongResponse) GetSong() *Song {
-	if x != nil {
-		return x.Song
-	}
-	return nil
-}
-
-type SearchRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Query         string                 `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SearchRequest) Reset() {
-	*x = SearchRequest{}
-	mi := &file_catalog_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SearchRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SearchRequest) ProtoMessage() {}
-
-func (x *SearchRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_catalog_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SearchRequest.ProtoReflect.Descriptor instead.
-func (*SearchRequest) Descriptor() ([]byte, []int) {
-	return file_catalog_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *SearchRequest) GetQuery() string {
-	if x != nil {
-		return x.Query
-	}
-	return ""
-}
-
-func (x *SearchRequest) GetLimit() int32 {
-	if x != nil {
-		return x.Limit
-	}
-	return 0
-}
-
-type SearchResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Songs         []*Song                `protobuf:"bytes,1,rep,name=songs,proto3" json:"songs,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SearchResponse) Reset() {
-	*x = SearchResponse{}
-	mi := &file_catalog_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SearchResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SearchResponse) ProtoMessage() {}
-
-func (x *SearchResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_catalog_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SearchResponse.ProtoReflect.Descriptor instead.
-func (*SearchResponse) Descriptor() ([]byte, []int) {
-	return file_catalog_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *SearchResponse) GetSongs() []*Song {
-	if x != nil {
-		return x.Songs
-	}
-	return nil
-}
-
-type ListAlbumsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ArtistId      int64                  `protobuf:"varint,1,opt,name=artist_id,json=artistId,proto3" json:"artist_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListAlbumsRequest) Reset() {
-	*x = ListAlbumsRequest{}
-	mi := &file_catalog_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListAlbumsRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListAlbumsRequest) ProtoMessage() {}
-
-func (x *ListAlbumsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_catalog_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListAlbumsRequest.ProtoReflect.Descriptor instead.
-func (*ListAlbumsRequest) Descriptor() ([]byte, []int) {
-	return file_catalog_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *ListAlbumsRequest) GetArtistId() int64 {
-	if x != nil {
-		return x.ArtistId
-	}
-	return 0
 }
 
 type Album struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	ReleaseYear   string                 `protobuf:"bytes,3,opt,name=release_year,json=releaseYear,proto3" json:"release_year,omitempty"`
+	ArtistId      int64                  `protobuf:"varint,2,opt,name=artist_id,json=artistId,proto3" json:"artist_id,omitempty"`
+	Title         string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	ReleaseYear   int32                  `protobuf:"varint,4,opt,name=release_year,json=releaseYear,proto3" json:"release_year,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Album) Reset() {
 	*x = Album{}
-	mi := &file_catalog_proto_msgTypes[6]
+	mi := &file_catalog_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -348,7 +149,7 @@ func (x *Album) String() string {
 func (*Album) ProtoMessage() {}
 
 func (x *Album) ProtoReflect() protoreflect.Message {
-	mi := &file_catalog_proto_msgTypes[6]
+	mi := &file_catalog_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -361,12 +162,19 @@ func (x *Album) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Album.ProtoReflect.Descriptor instead.
 func (*Album) Descriptor() ([]byte, []int) {
-	return file_catalog_proto_rawDescGZIP(), []int{6}
+	return file_catalog_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *Album) GetId() int64 {
 	if x != nil {
 		return x.Id
+	}
+	return 0
+}
+
+func (x *Album) GetArtistId() int64 {
+	if x != nil {
+		return x.ArtistId
 	}
 	return 0
 }
@@ -378,35 +186,39 @@ func (x *Album) GetTitle() string {
 	return ""
 }
 
-func (x *Album) GetReleaseYear() string {
+func (x *Album) GetReleaseYear() int32 {
 	if x != nil {
 		return x.ReleaseYear
 	}
-	return ""
+	return 0
 }
 
-type ListAlbumsResponse struct {
+type Song struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Albums        []*Album               `protobuf:"bytes,1,rep,name=albums,proto3" json:"albums,omitempty"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	AlbumId       int64                  `protobuf:"varint,2,opt,name=album_id,json=albumId,proto3" json:"album_id,omitempty"`
+	Title         string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	Duration      int32                  `protobuf:"varint,4,opt,name=duration,proto3" json:"duration,omitempty"`
+	Genre         string                 `protobuf:"bytes,5,opt,name=genre,proto3" json:"genre,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListAlbumsResponse) Reset() {
-	*x = ListAlbumsResponse{}
-	mi := &file_catalog_proto_msgTypes[7]
+func (x *Song) Reset() {
+	*x = Song{}
+	mi := &file_catalog_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListAlbumsResponse) String() string {
+func (x *Song) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListAlbumsResponse) ProtoMessage() {}
+func (*Song) ProtoMessage() {}
 
-func (x *ListAlbumsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_catalog_proto_msgTypes[7]
+func (x *Song) ProtoReflect() protoreflect.Message {
+	mi := &file_catalog_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -417,99 +229,295 @@ func (x *ListAlbumsResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListAlbumsResponse.ProtoReflect.Descriptor instead.
-func (*ListAlbumsResponse) Descriptor() ([]byte, []int) {
-	return file_catalog_proto_rawDescGZIP(), []int{7}
+// Deprecated: Use Song.ProtoReflect.Descriptor instead.
+func (*Song) Descriptor() ([]byte, []int) {
+	return file_catalog_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *ListAlbumsResponse) GetAlbums() []*Album {
+func (x *Song) GetId() int64 {
 	if x != nil {
-		return x.Albums
+		return x.Id
 	}
-	return nil
+	return 0
 }
 
-type AddSongRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	Title           string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
-	ArtistId        int64                  `protobuf:"varint,2,opt,name=artist_id,json=artistId,proto3" json:"artist_id,omitempty"`
-	DurationSeconds int32                  `protobuf:"varint,3,opt,name=duration_seconds,json=durationSeconds,proto3" json:"duration_seconds,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
-}
-
-func (x *AddSongRequest) Reset() {
-	*x = AddSongRequest{}
-	mi := &file_catalog_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AddSongRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AddSongRequest) ProtoMessage() {}
-
-func (x *AddSongRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_catalog_proto_msgTypes[8]
+func (x *Song) GetAlbumId() int64 {
 	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
+		return x.AlbumId
 	}
-	return mi.MessageOf(x)
+	return 0
 }
 
-// Deprecated: Use AddSongRequest.ProtoReflect.Descriptor instead.
-func (*AddSongRequest) Descriptor() ([]byte, []int) {
-	return file_catalog_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *AddSongRequest) GetTitle() string {
+func (x *Song) GetTitle() string {
 	if x != nil {
 		return x.Title
 	}
 	return ""
 }
 
-func (x *AddSongRequest) GetArtistId() int64 {
+func (x *Song) GetDuration() int32 {
+	if x != nil {
+		return x.Duration
+	}
+	return 0
+}
+
+func (x *Song) GetGenre() string {
+	if x != nil {
+		return x.Genre
+	}
+	return ""
+}
+
+type CreateArtistRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Bio           string                 `protobuf:"bytes,2,opt,name=bio,proto3" json:"bio,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateArtistRequest) Reset() {
+	*x = CreateArtistRequest{}
+	mi := &file_catalog_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateArtistRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateArtistRequest) ProtoMessage() {}
+
+func (x *CreateArtistRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_catalog_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateArtistRequest.ProtoReflect.Descriptor instead.
+func (*CreateArtistRequest) Descriptor() ([]byte, []int) {
+	return file_catalog_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *CreateArtistRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *CreateArtistRequest) GetBio() string {
+	if x != nil {
+		return x.Bio
+	}
+	return ""
+}
+
+type CreateArtistResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateArtistResponse) Reset() {
+	*x = CreateArtistResponse{}
+	mi := &file_catalog_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateArtistResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateArtistResponse) ProtoMessage() {}
+
+func (x *CreateArtistResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_catalog_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateArtistResponse.ProtoReflect.Descriptor instead.
+func (*CreateArtistResponse) Descriptor() ([]byte, []int) {
+	return file_catalog_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *CreateArtistResponse) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type GetArtistRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetArtistRequest) Reset() {
+	*x = GetArtistRequest{}
+	mi := &file_catalog_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetArtistRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetArtistRequest) ProtoMessage() {}
+
+func (x *GetArtistRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_catalog_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetArtistRequest.ProtoReflect.Descriptor instead.
+func (*GetArtistRequest) Descriptor() ([]byte, []int) {
+	return file_catalog_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetArtistRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type GetArtistResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Artist        *Artist                `protobuf:"bytes,1,opt,name=artist,proto3" json:"artist,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetArtistResponse) Reset() {
+	*x = GetArtistResponse{}
+	mi := &file_catalog_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetArtistResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetArtistResponse) ProtoMessage() {}
+
+func (x *GetArtistResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_catalog_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetArtistResponse.ProtoReflect.Descriptor instead.
+func (*GetArtistResponse) Descriptor() ([]byte, []int) {
+	return file_catalog_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *GetArtistResponse) GetArtist() *Artist {
+	if x != nil {
+		return x.Artist
+	}
+	return nil
+}
+
+type GetAlbumsByArtistRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ArtistId      int64                  `protobuf:"varint,1,opt,name=artist_id,json=artistId,proto3" json:"artist_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetAlbumsByArtistRequest) Reset() {
+	*x = GetAlbumsByArtistRequest{}
+	mi := &file_catalog_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetAlbumsByArtistRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAlbumsByArtistRequest) ProtoMessage() {}
+
+func (x *GetAlbumsByArtistRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_catalog_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAlbumsByArtistRequest.ProtoReflect.Descriptor instead.
+func (*GetAlbumsByArtistRequest) Descriptor() ([]byte, []int) {
+	return file_catalog_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *GetAlbumsByArtistRequest) GetArtistId() int64 {
 	if x != nil {
 		return x.ArtistId
 	}
 	return 0
 }
 
-func (x *AddSongRequest) GetDurationSeconds() int32 {
-	if x != nil {
-		return x.DurationSeconds
-	}
-	return 0
-}
-
-type AddSongResponse struct {
+type GetAlbumsByArtistResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	NewSongId     int64                  `protobuf:"varint,1,opt,name=new_song_id,json=newSongId,proto3" json:"new_song_id,omitempty"`
+	Albums        []*Album               `protobuf:"bytes,1,rep,name=albums,proto3" json:"albums,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *AddSongResponse) Reset() {
-	*x = AddSongResponse{}
+func (x *GetAlbumsByArtistResponse) Reset() {
+	*x = GetAlbumsByArtistResponse{}
 	mi := &file_catalog_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *AddSongResponse) String() string {
+func (x *GetAlbumsByArtistResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*AddSongResponse) ProtoMessage() {}
+func (*GetAlbumsByArtistResponse) ProtoMessage() {}
 
-func (x *AddSongResponse) ProtoReflect() protoreflect.Message {
+func (x *GetAlbumsByArtistResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_catalog_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -521,58 +529,934 @@ func (x *AddSongResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use AddSongResponse.ProtoReflect.Descriptor instead.
-func (*AddSongResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetAlbumsByArtistResponse.ProtoReflect.Descriptor instead.
+func (*GetAlbumsByArtistResponse) Descriptor() ([]byte, []int) {
 	return file_catalog_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *AddSongResponse) GetNewSongId() int64 {
+func (x *GetAlbumsByArtistResponse) GetAlbums() []*Album {
 	if x != nil {
-		return x.NewSongId
+		return x.Albums
+	}
+	return nil
+}
+
+type CreateAlbumRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ArtistId      int64                  `protobuf:"varint,1,opt,name=artist_id,json=artistId,proto3" json:"artist_id,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	ReleaseYear   int32                  `protobuf:"varint,3,opt,name=release_year,json=releaseYear,proto3" json:"release_year,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateAlbumRequest) Reset() {
+	*x = CreateAlbumRequest{}
+	mi := &file_catalog_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateAlbumRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateAlbumRequest) ProtoMessage() {}
+
+func (x *CreateAlbumRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_catalog_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateAlbumRequest.ProtoReflect.Descriptor instead.
+func (*CreateAlbumRequest) Descriptor() ([]byte, []int) {
+	return file_catalog_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *CreateAlbumRequest) GetArtistId() int64 {
+	if x != nil {
+		return x.ArtistId
 	}
 	return 0
+}
+
+func (x *CreateAlbumRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *CreateAlbumRequest) GetReleaseYear() int32 {
+	if x != nil {
+		return x.ReleaseYear
+	}
+	return 0
+}
+
+type CreateAlbumResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateAlbumResponse) Reset() {
+	*x = CreateAlbumResponse{}
+	mi := &file_catalog_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateAlbumResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateAlbumResponse) ProtoMessage() {}
+
+func (x *CreateAlbumResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_catalog_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateAlbumResponse.ProtoReflect.Descriptor instead.
+func (*CreateAlbumResponse) Descriptor() ([]byte, []int) {
+	return file_catalog_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *CreateAlbumResponse) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type GetAlbumRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetAlbumRequest) Reset() {
+	*x = GetAlbumRequest{}
+	mi := &file_catalog_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetAlbumRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAlbumRequest) ProtoMessage() {}
+
+func (x *GetAlbumRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_catalog_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAlbumRequest.ProtoReflect.Descriptor instead.
+func (*GetAlbumRequest) Descriptor() ([]byte, []int) {
+	return file_catalog_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *GetAlbumRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type GetAlbumResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Album         *Album                 `protobuf:"bytes,1,opt,name=album,proto3" json:"album,omitempty"`
+	ArtistName    string                 `protobuf:"bytes,2,opt,name=artist_name,json=artistName,proto3" json:"artist_name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetAlbumResponse) Reset() {
+	*x = GetAlbumResponse{}
+	mi := &file_catalog_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetAlbumResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAlbumResponse) ProtoMessage() {}
+
+func (x *GetAlbumResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_catalog_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAlbumResponse.ProtoReflect.Descriptor instead.
+func (*GetAlbumResponse) Descriptor() ([]byte, []int) {
+	return file_catalog_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *GetAlbumResponse) GetAlbum() *Album {
+	if x != nil {
+		return x.Album
+	}
+	return nil
+}
+
+func (x *GetAlbumResponse) GetArtistName() string {
+	if x != nil {
+		return x.ArtistName
+	}
+	return ""
+}
+
+type GetSongsByAlbumRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AlbumId       int64                  `protobuf:"varint,1,opt,name=album_id,json=albumId,proto3" json:"album_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetSongsByAlbumRequest) Reset() {
+	*x = GetSongsByAlbumRequest{}
+	mi := &file_catalog_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetSongsByAlbumRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSongsByAlbumRequest) ProtoMessage() {}
+
+func (x *GetSongsByAlbumRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_catalog_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSongsByAlbumRequest.ProtoReflect.Descriptor instead.
+func (*GetSongsByAlbumRequest) Descriptor() ([]byte, []int) {
+	return file_catalog_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *GetSongsByAlbumRequest) GetAlbumId() int64 {
+	if x != nil {
+		return x.AlbumId
+	}
+	return 0
+}
+
+type GetSongsByAlbumResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Songs         []*Song                `protobuf:"bytes,1,rep,name=songs,proto3" json:"songs,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetSongsByAlbumResponse) Reset() {
+	*x = GetSongsByAlbumResponse{}
+	mi := &file_catalog_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetSongsByAlbumResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSongsByAlbumResponse) ProtoMessage() {}
+
+func (x *GetSongsByAlbumResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_catalog_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSongsByAlbumResponse.ProtoReflect.Descriptor instead.
+func (*GetSongsByAlbumResponse) Descriptor() ([]byte, []int) {
+	return file_catalog_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *GetSongsByAlbumResponse) GetSongs() []*Song {
+	if x != nil {
+		return x.Songs
+	}
+	return nil
+}
+
+type CreateSongRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AlbumId       int64                  `protobuf:"varint,1,opt,name=album_id,json=albumId,proto3" json:"album_id,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Duration      int32                  `protobuf:"varint,3,opt,name=duration,proto3" json:"duration,omitempty"`
+	Genre         string                 `protobuf:"bytes,4,opt,name=genre,proto3" json:"genre,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateSongRequest) Reset() {
+	*x = CreateSongRequest{}
+	mi := &file_catalog_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateSongRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateSongRequest) ProtoMessage() {}
+
+func (x *CreateSongRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_catalog_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateSongRequest.ProtoReflect.Descriptor instead.
+func (*CreateSongRequest) Descriptor() ([]byte, []int) {
+	return file_catalog_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *CreateSongRequest) GetAlbumId() int64 {
+	if x != nil {
+		return x.AlbumId
+	}
+	return 0
+}
+
+func (x *CreateSongRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *CreateSongRequest) GetDuration() int32 {
+	if x != nil {
+		return x.Duration
+	}
+	return 0
+}
+
+func (x *CreateSongRequest) GetGenre() string {
+	if x != nil {
+		return x.Genre
+	}
+	return ""
+}
+
+type CreateSongResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateSongResponse) Reset() {
+	*x = CreateSongResponse{}
+	mi := &file_catalog_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateSongResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateSongResponse) ProtoMessage() {}
+
+func (x *CreateSongResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_catalog_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateSongResponse.ProtoReflect.Descriptor instead.
+func (*CreateSongResponse) Descriptor() ([]byte, []int) {
+	return file_catalog_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *CreateSongResponse) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type GetSongRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetSongRequest) Reset() {
+	*x = GetSongRequest{}
+	mi := &file_catalog_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetSongRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSongRequest) ProtoMessage() {}
+
+func (x *GetSongRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_catalog_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSongRequest.ProtoReflect.Descriptor instead.
+func (*GetSongRequest) Descriptor() ([]byte, []int) {
+	return file_catalog_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *GetSongRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type GetSongResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Song          *Song                  `protobuf:"bytes,1,opt,name=song,proto3" json:"song,omitempty"`
+	ArtistName    string                 `protobuf:"bytes,2,opt,name=artist_name,json=artistName,proto3" json:"artist_name,omitempty"`
+	AlbumTitle    string                 `protobuf:"bytes,3,opt,name=album_title,json=albumTitle,proto3" json:"album_title,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetSongResponse) Reset() {
+	*x = GetSongResponse{}
+	mi := &file_catalog_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetSongResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSongResponse) ProtoMessage() {}
+
+func (x *GetSongResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_catalog_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSongResponse.ProtoReflect.Descriptor instead.
+func (*GetSongResponse) Descriptor() ([]byte, []int) {
+	return file_catalog_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *GetSongResponse) GetSong() *Song {
+	if x != nil {
+		return x.Song
+	}
+	return nil
+}
+
+func (x *GetSongResponse) GetArtistName() string {
+	if x != nil {
+		return x.ArtistName
+	}
+	return ""
+}
+
+func (x *GetSongResponse) GetAlbumTitle() string {
+	if x != nil {
+		return x.AlbumTitle
+	}
+	return ""
+}
+
+type UpdateSongRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Genre         string                 `protobuf:"bytes,3,opt,name=genre,proto3" json:"genre,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateSongRequest) Reset() {
+	*x = UpdateSongRequest{}
+	mi := &file_catalog_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateSongRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateSongRequest) ProtoMessage() {}
+
+func (x *UpdateSongRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_catalog_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateSongRequest.ProtoReflect.Descriptor instead.
+func (*UpdateSongRequest) Descriptor() ([]byte, []int) {
+	return file_catalog_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *UpdateSongRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *UpdateSongRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *UpdateSongRequest) GetGenre() string {
+	if x != nil {
+		return x.Genre
+	}
+	return ""
+}
+
+type DeleteSongRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteSongRequest) Reset() {
+	*x = DeleteSongRequest{}
+	mi := &file_catalog_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteSongRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteSongRequest) ProtoMessage() {}
+
+func (x *DeleteSongRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_catalog_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteSongRequest.ProtoReflect.Descriptor instead.
+func (*DeleteSongRequest) Descriptor() ([]byte, []int) {
+	return file_catalog_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *DeleteSongRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type GetSongsByGenreRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Genre         string                 `protobuf:"bytes,1,opt,name=genre,proto3" json:"genre,omitempty"`
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetSongsByGenreRequest) Reset() {
+	*x = GetSongsByGenreRequest{}
+	mi := &file_catalog_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetSongsByGenreRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSongsByGenreRequest) ProtoMessage() {}
+
+func (x *GetSongsByGenreRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_catalog_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSongsByGenreRequest.ProtoReflect.Descriptor instead.
+func (*GetSongsByGenreRequest) Descriptor() ([]byte, []int) {
+	return file_catalog_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *GetSongsByGenreRequest) GetGenre() string {
+	if x != nil {
+		return x.Genre
+	}
+	return ""
+}
+
+func (x *GetSongsByGenreRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+type GetSongsByGenreResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Songs         []*Song                `protobuf:"bytes,1,rep,name=songs,proto3" json:"songs,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetSongsByGenreResponse) Reset() {
+	*x = GetSongsByGenreResponse{}
+	mi := &file_catalog_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetSongsByGenreResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSongsByGenreResponse) ProtoMessage() {}
+
+func (x *GetSongsByGenreResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_catalog_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSongsByGenreResponse.ProtoReflect.Descriptor instead.
+func (*GetSongsByGenreResponse) Descriptor() ([]byte, []int) {
+	return file_catalog_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *GetSongsByGenreResponse) GetSongs() []*Song {
+	if x != nil {
+		return x.Songs
+	}
+	return nil
+}
+
+type SearchCatalogRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Query         string                 `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SearchCatalogRequest) Reset() {
+	*x = SearchCatalogRequest{}
+	mi := &file_catalog_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SearchCatalogRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SearchCatalogRequest) ProtoMessage() {}
+
+func (x *SearchCatalogRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_catalog_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SearchCatalogRequest.ProtoReflect.Descriptor instead.
+func (*SearchCatalogRequest) Descriptor() ([]byte, []int) {
+	return file_catalog_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *SearchCatalogRequest) GetQuery() string {
+	if x != nil {
+		return x.Query
+	}
+	return ""
+}
+
+func (x *SearchCatalogRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+type SearchCatalogResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Artists       []*Artist              `protobuf:"bytes,1,rep,name=artists,proto3" json:"artists,omitempty"`
+	Albums        []*Album               `protobuf:"bytes,2,rep,name=albums,proto3" json:"albums,omitempty"`
+	Songs         []*Song                `protobuf:"bytes,3,rep,name=songs,proto3" json:"songs,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SearchCatalogResponse) Reset() {
+	*x = SearchCatalogResponse{}
+	mi := &file_catalog_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SearchCatalogResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SearchCatalogResponse) ProtoMessage() {}
+
+func (x *SearchCatalogResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_catalog_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SearchCatalogResponse.ProtoReflect.Descriptor instead.
+func (*SearchCatalogResponse) Descriptor() ([]byte, []int) {
+	return file_catalog_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *SearchCatalogResponse) GetArtists() []*Artist {
+	if x != nil {
+		return x.Artists
+	}
+	return nil
+}
+
+func (x *SearchCatalogResponse) GetAlbums() []*Album {
+	if x != nil {
+		return x.Albums
+	}
+	return nil
+}
+
+func (x *SearchCatalogResponse) GetSongs() []*Song {
+	if x != nil {
+		return x.Songs
+	}
+	return nil
 }
 
 var File_catalog_proto protoreflect.FileDescriptor
 
 const file_catalog_proto_rawDesc = "" +
 	"\n" +
-	"\rcatalog.proto\x12\acatalog\"\xa0\x01\n" +
-	"\x04Song\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1f\n" +
-	"\vartist_name\x18\x03 \x01(\tR\n" +
-	"artistName\x12&\n" +
-	"\x0fcover_image_url\x18\x04 \x01(\tR\rcoverImageUrl\x12)\n" +
-	"\x10duration_seconds\x18\x05 \x01(\x05R\x0fdurationSeconds\")\n" +
-	"\x0eGetSongRequest\x12\x17\n" +
-	"\asong_id\x18\x01 \x01(\x03R\x06songId\"4\n" +
-	"\x0fGetSongResponse\x12!\n" +
-	"\x04song\x18\x01 \x01(\v2\r.catalog.SongR\x04song\";\n" +
-	"\rSearchRequest\x12\x14\n" +
-	"\x05query\x18\x01 \x01(\tR\x05query\x12\x14\n" +
-	"\x05limit\x18\x02 \x01(\x05R\x05limit\"5\n" +
-	"\x0eSearchResponse\x12#\n" +
-	"\x05songs\x18\x01 \x03(\v2\r.catalog.SongR\x05songs\"0\n" +
-	"\x11ListAlbumsRequest\x12\x1b\n" +
-	"\tartist_id\x18\x01 \x01(\x03R\bartistId\"P\n" +
+	"\rcatalog.proto\x12\acatalog\"+\n" +
+	"\x0fSuccessResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\">\n" +
+	"\x06Artist\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x10\n" +
+	"\x03bio\x18\x03 \x01(\tR\x03bio\"m\n" +
 	"\x05Album\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1b\n" +
+	"\tartist_id\x18\x02 \x01(\x03R\bartistId\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12!\n" +
+	"\frelease_year\x18\x04 \x01(\x05R\vreleaseYear\"y\n" +
+	"\x04Song\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x19\n" +
+	"\balbum_id\x18\x02 \x01(\x03R\aalbumId\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12\x1a\n" +
+	"\bduration\x18\x04 \x01(\x05R\bduration\x12\x14\n" +
+	"\x05genre\x18\x05 \x01(\tR\x05genre\";\n" +
+	"\x13CreateArtistRequest\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x10\n" +
+	"\x03bio\x18\x02 \x01(\tR\x03bio\"&\n" +
+	"\x14CreateArtistResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\"\"\n" +
+	"\x10GetArtistRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\"<\n" +
+	"\x11GetArtistResponse\x12'\n" +
+	"\x06artist\x18\x01 \x01(\v2\x0f.catalog.ArtistR\x06artist\"7\n" +
+	"\x18GetAlbumsByArtistRequest\x12\x1b\n" +
+	"\tartist_id\x18\x01 \x01(\x03R\bartistId\"C\n" +
+	"\x19GetAlbumsByArtistResponse\x12&\n" +
+	"\x06albums\x18\x01 \x03(\v2\x0e.catalog.AlbumR\x06albums\"j\n" +
+	"\x12CreateAlbumRequest\x12\x1b\n" +
+	"\tartist_id\x18\x01 \x01(\x03R\bartistId\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12!\n" +
-	"\frelease_year\x18\x03 \x01(\tR\vreleaseYear\"<\n" +
-	"\x12ListAlbumsResponse\x12&\n" +
-	"\x06albums\x18\x01 \x03(\v2\x0e.catalog.AlbumR\x06albums\"n\n" +
-	"\x0eAddSongRequest\x12\x14\n" +
-	"\x05title\x18\x01 \x01(\tR\x05title\x12\x1b\n" +
-	"\tartist_id\x18\x02 \x01(\x03R\bartistId\x12)\n" +
-	"\x10duration_seconds\x18\x03 \x01(\x05R\x0fdurationSeconds\"1\n" +
-	"\x0fAddSongResponse\x12\x1e\n" +
-	"\vnew_song_id\x18\x01 \x01(\x03R\tnewSongId2\xa2\x02\n" +
-	"\x0eCatalogService\x12C\n" +
-	"\x0eGetSongDetails\x12\x17.catalog.GetSongRequest\x1a\x18.catalog.GetSongResponse\x12@\n" +
-	"\rSearchCatalog\x12\x16.catalog.SearchRequest\x1a\x17.catalog.SearchResponse\x12K\n" +
-	"\x10ListArtistAlbums\x12\x1a.catalog.ListAlbumsRequest\x1a\x1b.catalog.ListAlbumsResponse\x12<\n" +
-	"\aAddSong\x12\x17.catalog.AddSongRequest\x1a\x18.catalog.AddSongResponseB+Z)github.com/Adiilkwz/music-grpc-go/catalogb\x06proto3"
+	"\frelease_year\x18\x03 \x01(\x05R\vreleaseYear\"%\n" +
+	"\x13CreateAlbumResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\"!\n" +
+	"\x0fGetAlbumRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\"Y\n" +
+	"\x10GetAlbumResponse\x12$\n" +
+	"\x05album\x18\x01 \x01(\v2\x0e.catalog.AlbumR\x05album\x12\x1f\n" +
+	"\vartist_name\x18\x02 \x01(\tR\n" +
+	"artistName\"3\n" +
+	"\x16GetSongsByAlbumRequest\x12\x19\n" +
+	"\balbum_id\x18\x01 \x01(\x03R\aalbumId\">\n" +
+	"\x17GetSongsByAlbumResponse\x12#\n" +
+	"\x05songs\x18\x01 \x03(\v2\r.catalog.SongR\x05songs\"v\n" +
+	"\x11CreateSongRequest\x12\x19\n" +
+	"\balbum_id\x18\x01 \x01(\x03R\aalbumId\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1a\n" +
+	"\bduration\x18\x03 \x01(\x05R\bduration\x12\x14\n" +
+	"\x05genre\x18\x04 \x01(\tR\x05genre\"$\n" +
+	"\x12CreateSongResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\" \n" +
+	"\x0eGetSongRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\"v\n" +
+	"\x0fGetSongResponse\x12!\n" +
+	"\x04song\x18\x01 \x01(\v2\r.catalog.SongR\x04song\x12\x1f\n" +
+	"\vartist_name\x18\x02 \x01(\tR\n" +
+	"artistName\x12\x1f\n" +
+	"\valbum_title\x18\x03 \x01(\tR\n" +
+	"albumTitle\"O\n" +
+	"\x11UpdateSongRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12\x14\n" +
+	"\x05genre\x18\x03 \x01(\tR\x05genre\"#\n" +
+	"\x11DeleteSongRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\"D\n" +
+	"\x16GetSongsByGenreRequest\x12\x14\n" +
+	"\x05genre\x18\x01 \x01(\tR\x05genre\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\">\n" +
+	"\x17GetSongsByGenreResponse\x12#\n" +
+	"\x05songs\x18\x01 \x03(\v2\r.catalog.SongR\x05songs\"B\n" +
+	"\x14SearchCatalogRequest\x12\x14\n" +
+	"\x05query\x18\x01 \x01(\tR\x05query\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\"\x8f\x01\n" +
+	"\x15SearchCatalogResponse\x12)\n" +
+	"\aartists\x18\x01 \x03(\v2\x0f.catalog.ArtistR\aartists\x12&\n" +
+	"\x06albums\x18\x02 \x03(\v2\x0e.catalog.AlbumR\x06albums\x12#\n" +
+	"\x05songs\x18\x03 \x03(\v2\r.catalog.SongR\x05songs2\x91\a\n" +
+	"\x0eCatalogService\x12K\n" +
+	"\fCreateArtist\x12\x1c.catalog.CreateArtistRequest\x1a\x1d.catalog.CreateArtistResponse\x12B\n" +
+	"\tGetArtist\x12\x19.catalog.GetArtistRequest\x1a\x1a.catalog.GetArtistResponse\x12Z\n" +
+	"\x11GetAlbumsByArtist\x12!.catalog.GetAlbumsByArtistRequest\x1a\".catalog.GetAlbumsByArtistResponse\x12H\n" +
+	"\vCreateAlbum\x12\x1b.catalog.CreateAlbumRequest\x1a\x1c.catalog.CreateAlbumResponse\x12?\n" +
+	"\bGetAlbum\x12\x18.catalog.GetAlbumRequest\x1a\x19.catalog.GetAlbumResponse\x12T\n" +
+	"\x0fGetSongsByAlbum\x12\x1f.catalog.GetSongsByAlbumRequest\x1a .catalog.GetSongsByAlbumResponse\x12E\n" +
+	"\n" +
+	"CreateSong\x12\x1a.catalog.CreateSongRequest\x1a\x1b.catalog.CreateSongResponse\x12<\n" +
+	"\aGetSong\x12\x17.catalog.GetSongRequest\x1a\x18.catalog.GetSongResponse\x12B\n" +
+	"\n" +
+	"UpdateSong\x12\x1a.catalog.UpdateSongRequest\x1a\x18.catalog.SuccessResponse\x12B\n" +
+	"\n" +
+	"DeleteSong\x12\x1a.catalog.DeleteSongRequest\x1a\x18.catalog.SuccessResponse\x12T\n" +
+	"\x0fGetSongsByGenre\x12\x1f.catalog.GetSongsByGenreRequest\x1a .catalog.GetSongsByGenreResponse\x12N\n" +
+	"\rSearchCatalog\x12\x1d.catalog.SearchCatalogRequest\x1a\x1e.catalog.SearchCatalogResponseB+Z)github.com/Adiilkwz/music-grpc-go/catalogb\x06proto3"
 
 var (
 	file_catalog_proto_rawDescOnce sync.Once
@@ -586,36 +1470,74 @@ func file_catalog_proto_rawDescGZIP() []byte {
 	return file_catalog_proto_rawDescData
 }
 
-var file_catalog_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_catalog_proto_msgTypes = make([]protoimpl.MessageInfo, 26)
 var file_catalog_proto_goTypes = []any{
-	(*Song)(nil),               // 0: catalog.Song
-	(*GetSongRequest)(nil),     // 1: catalog.GetSongRequest
-	(*GetSongResponse)(nil),    // 2: catalog.GetSongResponse
-	(*SearchRequest)(nil),      // 3: catalog.SearchRequest
-	(*SearchResponse)(nil),     // 4: catalog.SearchResponse
-	(*ListAlbumsRequest)(nil),  // 5: catalog.ListAlbumsRequest
-	(*Album)(nil),              // 6: catalog.Album
-	(*ListAlbumsResponse)(nil), // 7: catalog.ListAlbumsResponse
-	(*AddSongRequest)(nil),     // 8: catalog.AddSongRequest
-	(*AddSongResponse)(nil),    // 9: catalog.AddSongResponse
+	(*SuccessResponse)(nil),           // 0: catalog.SuccessResponse
+	(*Artist)(nil),                    // 1: catalog.Artist
+	(*Album)(nil),                     // 2: catalog.Album
+	(*Song)(nil),                      // 3: catalog.Song
+	(*CreateArtistRequest)(nil),       // 4: catalog.CreateArtistRequest
+	(*CreateArtistResponse)(nil),      // 5: catalog.CreateArtistResponse
+	(*GetArtistRequest)(nil),          // 6: catalog.GetArtistRequest
+	(*GetArtistResponse)(nil),         // 7: catalog.GetArtistResponse
+	(*GetAlbumsByArtistRequest)(nil),  // 8: catalog.GetAlbumsByArtistRequest
+	(*GetAlbumsByArtistResponse)(nil), // 9: catalog.GetAlbumsByArtistResponse
+	(*CreateAlbumRequest)(nil),        // 10: catalog.CreateAlbumRequest
+	(*CreateAlbumResponse)(nil),       // 11: catalog.CreateAlbumResponse
+	(*GetAlbumRequest)(nil),           // 12: catalog.GetAlbumRequest
+	(*GetAlbumResponse)(nil),          // 13: catalog.GetAlbumResponse
+	(*GetSongsByAlbumRequest)(nil),    // 14: catalog.GetSongsByAlbumRequest
+	(*GetSongsByAlbumResponse)(nil),   // 15: catalog.GetSongsByAlbumResponse
+	(*CreateSongRequest)(nil),         // 16: catalog.CreateSongRequest
+	(*CreateSongResponse)(nil),        // 17: catalog.CreateSongResponse
+	(*GetSongRequest)(nil),            // 18: catalog.GetSongRequest
+	(*GetSongResponse)(nil),           // 19: catalog.GetSongResponse
+	(*UpdateSongRequest)(nil),         // 20: catalog.UpdateSongRequest
+	(*DeleteSongRequest)(nil),         // 21: catalog.DeleteSongRequest
+	(*GetSongsByGenreRequest)(nil),    // 22: catalog.GetSongsByGenreRequest
+	(*GetSongsByGenreResponse)(nil),   // 23: catalog.GetSongsByGenreResponse
+	(*SearchCatalogRequest)(nil),      // 24: catalog.SearchCatalogRequest
+	(*SearchCatalogResponse)(nil),     // 25: catalog.SearchCatalogResponse
 }
 var file_catalog_proto_depIdxs = []int32{
-	0, // 0: catalog.GetSongResponse.song:type_name -> catalog.Song
-	0, // 1: catalog.SearchResponse.songs:type_name -> catalog.Song
-	6, // 2: catalog.ListAlbumsResponse.albums:type_name -> catalog.Album
-	1, // 3: catalog.CatalogService.GetSongDetails:input_type -> catalog.GetSongRequest
-	3, // 4: catalog.CatalogService.SearchCatalog:input_type -> catalog.SearchRequest
-	5, // 5: catalog.CatalogService.ListArtistAlbums:input_type -> catalog.ListAlbumsRequest
-	8, // 6: catalog.CatalogService.AddSong:input_type -> catalog.AddSongRequest
-	2, // 7: catalog.CatalogService.GetSongDetails:output_type -> catalog.GetSongResponse
-	4, // 8: catalog.CatalogService.SearchCatalog:output_type -> catalog.SearchResponse
-	7, // 9: catalog.CatalogService.ListArtistAlbums:output_type -> catalog.ListAlbumsResponse
-	9, // 10: catalog.CatalogService.AddSong:output_type -> catalog.AddSongResponse
-	7, // [7:11] is the sub-list for method output_type
-	3, // [3:7] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	1,  // 0: catalog.GetArtistResponse.artist:type_name -> catalog.Artist
+	2,  // 1: catalog.GetAlbumsByArtistResponse.albums:type_name -> catalog.Album
+	2,  // 2: catalog.GetAlbumResponse.album:type_name -> catalog.Album
+	3,  // 3: catalog.GetSongsByAlbumResponse.songs:type_name -> catalog.Song
+	3,  // 4: catalog.GetSongResponse.song:type_name -> catalog.Song
+	3,  // 5: catalog.GetSongsByGenreResponse.songs:type_name -> catalog.Song
+	1,  // 6: catalog.SearchCatalogResponse.artists:type_name -> catalog.Artist
+	2,  // 7: catalog.SearchCatalogResponse.albums:type_name -> catalog.Album
+	3,  // 8: catalog.SearchCatalogResponse.songs:type_name -> catalog.Song
+	4,  // 9: catalog.CatalogService.CreateArtist:input_type -> catalog.CreateArtistRequest
+	6,  // 10: catalog.CatalogService.GetArtist:input_type -> catalog.GetArtistRequest
+	8,  // 11: catalog.CatalogService.GetAlbumsByArtist:input_type -> catalog.GetAlbumsByArtistRequest
+	10, // 12: catalog.CatalogService.CreateAlbum:input_type -> catalog.CreateAlbumRequest
+	12, // 13: catalog.CatalogService.GetAlbum:input_type -> catalog.GetAlbumRequest
+	14, // 14: catalog.CatalogService.GetSongsByAlbum:input_type -> catalog.GetSongsByAlbumRequest
+	16, // 15: catalog.CatalogService.CreateSong:input_type -> catalog.CreateSongRequest
+	18, // 16: catalog.CatalogService.GetSong:input_type -> catalog.GetSongRequest
+	20, // 17: catalog.CatalogService.UpdateSong:input_type -> catalog.UpdateSongRequest
+	21, // 18: catalog.CatalogService.DeleteSong:input_type -> catalog.DeleteSongRequest
+	22, // 19: catalog.CatalogService.GetSongsByGenre:input_type -> catalog.GetSongsByGenreRequest
+	24, // 20: catalog.CatalogService.SearchCatalog:input_type -> catalog.SearchCatalogRequest
+	5,  // 21: catalog.CatalogService.CreateArtist:output_type -> catalog.CreateArtistResponse
+	7,  // 22: catalog.CatalogService.GetArtist:output_type -> catalog.GetArtistResponse
+	9,  // 23: catalog.CatalogService.GetAlbumsByArtist:output_type -> catalog.GetAlbumsByArtistResponse
+	11, // 24: catalog.CatalogService.CreateAlbum:output_type -> catalog.CreateAlbumResponse
+	13, // 25: catalog.CatalogService.GetAlbum:output_type -> catalog.GetAlbumResponse
+	15, // 26: catalog.CatalogService.GetSongsByAlbum:output_type -> catalog.GetSongsByAlbumResponse
+	17, // 27: catalog.CatalogService.CreateSong:output_type -> catalog.CreateSongResponse
+	19, // 28: catalog.CatalogService.GetSong:output_type -> catalog.GetSongResponse
+	0,  // 29: catalog.CatalogService.UpdateSong:output_type -> catalog.SuccessResponse
+	0,  // 30: catalog.CatalogService.DeleteSong:output_type -> catalog.SuccessResponse
+	23, // 31: catalog.CatalogService.GetSongsByGenre:output_type -> catalog.GetSongsByGenreResponse
+	25, // 32: catalog.CatalogService.SearchCatalog:output_type -> catalog.SearchCatalogResponse
+	21, // [21:33] is the sub-list for method output_type
+	9,  // [9:21] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_catalog_proto_init() }
@@ -629,7 +1551,7 @@ func file_catalog_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_catalog_proto_rawDesc), len(file_catalog_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   10,
+			NumMessages:   26,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

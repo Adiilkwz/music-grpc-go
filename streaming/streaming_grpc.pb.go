@@ -19,10 +19,18 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	StreamingService_StreamAudio_FullMethodName    = "/streaming.StreamingService/StreamAudio"
-	StreamingService_RecordPlay_FullMethodName     = "/streaming.StreamingService/RecordPlay"
-	StreamingService_GetTrending_FullMethodName    = "/streaming.StreamingService/GetTrending"
-	StreamingService_GetUserHistory_FullMethodName = "/streaming.StreamingService/GetUserHistory"
+	StreamingService_StreamAudio_FullMethodName            = "/streaming.StreamingService/StreamAudio"
+	StreamingService_RecordPlay_FullMethodName             = "/streaming.StreamingService/RecordPlay"
+	StreamingService_GetUserHistory_FullMethodName         = "/streaming.StreamingService/GetUserHistory"
+	StreamingService_GetTrendingSongs_FullMethodName       = "/streaming.StreamingService/GetTrendingSongs"
+	StreamingService_CreatePlaylist_FullMethodName         = "/streaming.StreamingService/CreatePlaylist"
+	StreamingService_GetPlaylist_FullMethodName            = "/streaming.StreamingService/GetPlaylist"
+	StreamingService_AddSongToPlaylist_FullMethodName      = "/streaming.StreamingService/AddSongToPlaylist"
+	StreamingService_RemoveSongFromPlaylist_FullMethodName = "/streaming.StreamingService/RemoveSongFromPlaylist"
+	StreamingService_DeletePlaylist_FullMethodName         = "/streaming.StreamingService/DeletePlaylist"
+	StreamingService_LikeSong_FullMethodName               = "/streaming.StreamingService/LikeSong"
+	StreamingService_UnlikeSong_FullMethodName             = "/streaming.StreamingService/UnlikeSong"
+	StreamingService_GetLikedSongs_FullMethodName          = "/streaming.StreamingService/GetLikedSongs"
 )
 
 // StreamingServiceClient is the client API for StreamingService service.
@@ -30,9 +38,17 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type StreamingServiceClient interface {
 	StreamAudio(ctx context.Context, in *StreamRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[StreamResponse], error)
-	RecordPlay(ctx context.Context, in *RecordPlayRequest, opts ...grpc.CallOption) (*RecordPlayResponse, error)
-	GetTrending(ctx context.Context, in *GetTrendingRequest, opts ...grpc.CallOption) (*GetTrendingResponse, error)
-	GetUserHistory(ctx context.Context, in *GetHistoryRequest, opts ...grpc.CallOption) (*GetHistoryResponse, error)
+	RecordPlay(ctx context.Context, in *RecordPlayRequest, opts ...grpc.CallOption) (*SuccessResponse, error)
+	GetUserHistory(ctx context.Context, in *GetUserHistoryRequest, opts ...grpc.CallOption) (*GetUserHistoryResponse, error)
+	GetTrendingSongs(ctx context.Context, in *GetTrendingRequest, opts ...grpc.CallOption) (*GetTrendingResponse, error)
+	CreatePlaylist(ctx context.Context, in *CreatePlaylistRequest, opts ...grpc.CallOption) (*CreatePlaylistResponse, error)
+	GetPlaylist(ctx context.Context, in *GetPlaylistRequest, opts ...grpc.CallOption) (*GetPlaylistResponse, error)
+	AddSongToPlaylist(ctx context.Context, in *ModifyPlaylistRequest, opts ...grpc.CallOption) (*SuccessResponse, error)
+	RemoveSongFromPlaylist(ctx context.Context, in *ModifyPlaylistRequest, opts ...grpc.CallOption) (*SuccessResponse, error)
+	DeletePlaylist(ctx context.Context, in *DeletePlaylistRequest, opts ...grpc.CallOption) (*SuccessResponse, error)
+	LikeSong(ctx context.Context, in *LikeSongRequest, opts ...grpc.CallOption) (*SuccessResponse, error)
+	UnlikeSong(ctx context.Context, in *LikeSongRequest, opts ...grpc.CallOption) (*SuccessResponse, error)
+	GetLikedSongs(ctx context.Context, in *GetLikedSongsRequest, opts ...grpc.CallOption) (*GetLikedSongsResponse, error)
 }
 
 type streamingServiceClient struct {
@@ -62,9 +78,9 @@ func (c *streamingServiceClient) StreamAudio(ctx context.Context, in *StreamRequ
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type StreamingService_StreamAudioClient = grpc.ServerStreamingClient[StreamResponse]
 
-func (c *streamingServiceClient) RecordPlay(ctx context.Context, in *RecordPlayRequest, opts ...grpc.CallOption) (*RecordPlayResponse, error) {
+func (c *streamingServiceClient) RecordPlay(ctx context.Context, in *RecordPlayRequest, opts ...grpc.CallOption) (*SuccessResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RecordPlayResponse)
+	out := new(SuccessResponse)
 	err := c.cc.Invoke(ctx, StreamingService_RecordPlay_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -72,20 +88,100 @@ func (c *streamingServiceClient) RecordPlay(ctx context.Context, in *RecordPlayR
 	return out, nil
 }
 
-func (c *streamingServiceClient) GetTrending(ctx context.Context, in *GetTrendingRequest, opts ...grpc.CallOption) (*GetTrendingResponse, error) {
+func (c *streamingServiceClient) GetUserHistory(ctx context.Context, in *GetUserHistoryRequest, opts ...grpc.CallOption) (*GetUserHistoryResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetTrendingResponse)
-	err := c.cc.Invoke(ctx, StreamingService_GetTrending_FullMethodName, in, out, cOpts...)
+	out := new(GetUserHistoryResponse)
+	err := c.cc.Invoke(ctx, StreamingService_GetUserHistory_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *streamingServiceClient) GetUserHistory(ctx context.Context, in *GetHistoryRequest, opts ...grpc.CallOption) (*GetHistoryResponse, error) {
+func (c *streamingServiceClient) GetTrendingSongs(ctx context.Context, in *GetTrendingRequest, opts ...grpc.CallOption) (*GetTrendingResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetHistoryResponse)
-	err := c.cc.Invoke(ctx, StreamingService_GetUserHistory_FullMethodName, in, out, cOpts...)
+	out := new(GetTrendingResponse)
+	err := c.cc.Invoke(ctx, StreamingService_GetTrendingSongs_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *streamingServiceClient) CreatePlaylist(ctx context.Context, in *CreatePlaylistRequest, opts ...grpc.CallOption) (*CreatePlaylistResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreatePlaylistResponse)
+	err := c.cc.Invoke(ctx, StreamingService_CreatePlaylist_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *streamingServiceClient) GetPlaylist(ctx context.Context, in *GetPlaylistRequest, opts ...grpc.CallOption) (*GetPlaylistResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPlaylistResponse)
+	err := c.cc.Invoke(ctx, StreamingService_GetPlaylist_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *streamingServiceClient) AddSongToPlaylist(ctx context.Context, in *ModifyPlaylistRequest, opts ...grpc.CallOption) (*SuccessResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SuccessResponse)
+	err := c.cc.Invoke(ctx, StreamingService_AddSongToPlaylist_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *streamingServiceClient) RemoveSongFromPlaylist(ctx context.Context, in *ModifyPlaylistRequest, opts ...grpc.CallOption) (*SuccessResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SuccessResponse)
+	err := c.cc.Invoke(ctx, StreamingService_RemoveSongFromPlaylist_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *streamingServiceClient) DeletePlaylist(ctx context.Context, in *DeletePlaylistRequest, opts ...grpc.CallOption) (*SuccessResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SuccessResponse)
+	err := c.cc.Invoke(ctx, StreamingService_DeletePlaylist_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *streamingServiceClient) LikeSong(ctx context.Context, in *LikeSongRequest, opts ...grpc.CallOption) (*SuccessResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SuccessResponse)
+	err := c.cc.Invoke(ctx, StreamingService_LikeSong_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *streamingServiceClient) UnlikeSong(ctx context.Context, in *LikeSongRequest, opts ...grpc.CallOption) (*SuccessResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SuccessResponse)
+	err := c.cc.Invoke(ctx, StreamingService_UnlikeSong_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *streamingServiceClient) GetLikedSongs(ctx context.Context, in *GetLikedSongsRequest, opts ...grpc.CallOption) (*GetLikedSongsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetLikedSongsResponse)
+	err := c.cc.Invoke(ctx, StreamingService_GetLikedSongs_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -97,9 +193,17 @@ func (c *streamingServiceClient) GetUserHistory(ctx context.Context, in *GetHist
 // for forward compatibility.
 type StreamingServiceServer interface {
 	StreamAudio(*StreamRequest, grpc.ServerStreamingServer[StreamResponse]) error
-	RecordPlay(context.Context, *RecordPlayRequest) (*RecordPlayResponse, error)
-	GetTrending(context.Context, *GetTrendingRequest) (*GetTrendingResponse, error)
-	GetUserHistory(context.Context, *GetHistoryRequest) (*GetHistoryResponse, error)
+	RecordPlay(context.Context, *RecordPlayRequest) (*SuccessResponse, error)
+	GetUserHistory(context.Context, *GetUserHistoryRequest) (*GetUserHistoryResponse, error)
+	GetTrendingSongs(context.Context, *GetTrendingRequest) (*GetTrendingResponse, error)
+	CreatePlaylist(context.Context, *CreatePlaylistRequest) (*CreatePlaylistResponse, error)
+	GetPlaylist(context.Context, *GetPlaylistRequest) (*GetPlaylistResponse, error)
+	AddSongToPlaylist(context.Context, *ModifyPlaylistRequest) (*SuccessResponse, error)
+	RemoveSongFromPlaylist(context.Context, *ModifyPlaylistRequest) (*SuccessResponse, error)
+	DeletePlaylist(context.Context, *DeletePlaylistRequest) (*SuccessResponse, error)
+	LikeSong(context.Context, *LikeSongRequest) (*SuccessResponse, error)
+	UnlikeSong(context.Context, *LikeSongRequest) (*SuccessResponse, error)
+	GetLikedSongs(context.Context, *GetLikedSongsRequest) (*GetLikedSongsResponse, error)
 	mustEmbedUnimplementedStreamingServiceServer()
 }
 
@@ -113,14 +217,38 @@ type UnimplementedStreamingServiceServer struct{}
 func (UnimplementedStreamingServiceServer) StreamAudio(*StreamRequest, grpc.ServerStreamingServer[StreamResponse]) error {
 	return status.Error(codes.Unimplemented, "method StreamAudio not implemented")
 }
-func (UnimplementedStreamingServiceServer) RecordPlay(context.Context, *RecordPlayRequest) (*RecordPlayResponse, error) {
+func (UnimplementedStreamingServiceServer) RecordPlay(context.Context, *RecordPlayRequest) (*SuccessResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method RecordPlay not implemented")
 }
-func (UnimplementedStreamingServiceServer) GetTrending(context.Context, *GetTrendingRequest) (*GetTrendingResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetTrending not implemented")
-}
-func (UnimplementedStreamingServiceServer) GetUserHistory(context.Context, *GetHistoryRequest) (*GetHistoryResponse, error) {
+func (UnimplementedStreamingServiceServer) GetUserHistory(context.Context, *GetUserHistoryRequest) (*GetUserHistoryResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetUserHistory not implemented")
+}
+func (UnimplementedStreamingServiceServer) GetTrendingSongs(context.Context, *GetTrendingRequest) (*GetTrendingResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetTrendingSongs not implemented")
+}
+func (UnimplementedStreamingServiceServer) CreatePlaylist(context.Context, *CreatePlaylistRequest) (*CreatePlaylistResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreatePlaylist not implemented")
+}
+func (UnimplementedStreamingServiceServer) GetPlaylist(context.Context, *GetPlaylistRequest) (*GetPlaylistResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetPlaylist not implemented")
+}
+func (UnimplementedStreamingServiceServer) AddSongToPlaylist(context.Context, *ModifyPlaylistRequest) (*SuccessResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method AddSongToPlaylist not implemented")
+}
+func (UnimplementedStreamingServiceServer) RemoveSongFromPlaylist(context.Context, *ModifyPlaylistRequest) (*SuccessResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method RemoveSongFromPlaylist not implemented")
+}
+func (UnimplementedStreamingServiceServer) DeletePlaylist(context.Context, *DeletePlaylistRequest) (*SuccessResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeletePlaylist not implemented")
+}
+func (UnimplementedStreamingServiceServer) LikeSong(context.Context, *LikeSongRequest) (*SuccessResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method LikeSong not implemented")
+}
+func (UnimplementedStreamingServiceServer) UnlikeSong(context.Context, *LikeSongRequest) (*SuccessResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method UnlikeSong not implemented")
+}
+func (UnimplementedStreamingServiceServer) GetLikedSongs(context.Context, *GetLikedSongsRequest) (*GetLikedSongsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetLikedSongs not implemented")
 }
 func (UnimplementedStreamingServiceServer) mustEmbedUnimplementedStreamingServiceServer() {}
 func (UnimplementedStreamingServiceServer) testEmbeddedByValue()                          {}
@@ -172,26 +300,8 @@ func _StreamingService_RecordPlay_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _StreamingService_GetTrending_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetTrendingRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(StreamingServiceServer).GetTrending(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: StreamingService_GetTrending_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StreamingServiceServer).GetTrending(ctx, req.(*GetTrendingRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _StreamingService_GetUserHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetHistoryRequest)
+	in := new(GetUserHistoryRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -203,7 +313,169 @@ func _StreamingService_GetUserHistory_Handler(srv interface{}, ctx context.Conte
 		FullMethod: StreamingService_GetUserHistory_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StreamingServiceServer).GetUserHistory(ctx, req.(*GetHistoryRequest))
+		return srv.(StreamingServiceServer).GetUserHistory(ctx, req.(*GetUserHistoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StreamingService_GetTrendingSongs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTrendingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StreamingServiceServer).GetTrendingSongs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StreamingService_GetTrendingSongs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StreamingServiceServer).GetTrendingSongs(ctx, req.(*GetTrendingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StreamingService_CreatePlaylist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreatePlaylistRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StreamingServiceServer).CreatePlaylist(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StreamingService_CreatePlaylist_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StreamingServiceServer).CreatePlaylist(ctx, req.(*CreatePlaylistRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StreamingService_GetPlaylist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPlaylistRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StreamingServiceServer).GetPlaylist(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StreamingService_GetPlaylist_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StreamingServiceServer).GetPlaylist(ctx, req.(*GetPlaylistRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StreamingService_AddSongToPlaylist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ModifyPlaylistRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StreamingServiceServer).AddSongToPlaylist(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StreamingService_AddSongToPlaylist_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StreamingServiceServer).AddSongToPlaylist(ctx, req.(*ModifyPlaylistRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StreamingService_RemoveSongFromPlaylist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ModifyPlaylistRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StreamingServiceServer).RemoveSongFromPlaylist(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StreamingService_RemoveSongFromPlaylist_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StreamingServiceServer).RemoveSongFromPlaylist(ctx, req.(*ModifyPlaylistRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StreamingService_DeletePlaylist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeletePlaylistRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StreamingServiceServer).DeletePlaylist(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StreamingService_DeletePlaylist_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StreamingServiceServer).DeletePlaylist(ctx, req.(*DeletePlaylistRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StreamingService_LikeSong_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LikeSongRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StreamingServiceServer).LikeSong(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StreamingService_LikeSong_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StreamingServiceServer).LikeSong(ctx, req.(*LikeSongRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StreamingService_UnlikeSong_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LikeSongRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StreamingServiceServer).UnlikeSong(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StreamingService_UnlikeSong_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StreamingServiceServer).UnlikeSong(ctx, req.(*LikeSongRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StreamingService_GetLikedSongs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetLikedSongsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StreamingServiceServer).GetLikedSongs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StreamingService_GetLikedSongs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StreamingServiceServer).GetLikedSongs(ctx, req.(*GetLikedSongsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -220,12 +492,44 @@ var StreamingService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _StreamingService_RecordPlay_Handler,
 		},
 		{
-			MethodName: "GetTrending",
-			Handler:    _StreamingService_GetTrending_Handler,
-		},
-		{
 			MethodName: "GetUserHistory",
 			Handler:    _StreamingService_GetUserHistory_Handler,
+		},
+		{
+			MethodName: "GetTrendingSongs",
+			Handler:    _StreamingService_GetTrendingSongs_Handler,
+		},
+		{
+			MethodName: "CreatePlaylist",
+			Handler:    _StreamingService_CreatePlaylist_Handler,
+		},
+		{
+			MethodName: "GetPlaylist",
+			Handler:    _StreamingService_GetPlaylist_Handler,
+		},
+		{
+			MethodName: "AddSongToPlaylist",
+			Handler:    _StreamingService_AddSongToPlaylist_Handler,
+		},
+		{
+			MethodName: "RemoveSongFromPlaylist",
+			Handler:    _StreamingService_RemoveSongFromPlaylist_Handler,
+		},
+		{
+			MethodName: "DeletePlaylist",
+			Handler:    _StreamingService_DeletePlaylist_Handler,
+		},
+		{
+			MethodName: "LikeSong",
+			Handler:    _StreamingService_LikeSong_Handler,
+		},
+		{
+			MethodName: "UnlikeSong",
+			Handler:    _StreamingService_UnlikeSong_Handler,
+		},
+		{
+			MethodName: "GetLikedSongs",
+			Handler:    _StreamingService_GetLikedSongs_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

@@ -21,6 +21,50 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type SuccessResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SuccessResponse) Reset() {
+	*x = SuccessResponse{}
+	mi := &file_streaming_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SuccessResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SuccessResponse) ProtoMessage() {}
+
+func (x *SuccessResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_streaming_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SuccessResponse.ProtoReflect.Descriptor instead.
+func (*SuccessResponse) Descriptor() ([]byte, []int) {
+	return file_streaming_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *SuccessResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
 type StreamRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	SongId        int64                  `protobuf:"varint,1,opt,name=song_id,json=songId,proto3" json:"song_id,omitempty"`
@@ -30,7 +74,7 @@ type StreamRequest struct {
 
 func (x *StreamRequest) Reset() {
 	*x = StreamRequest{}
-	mi := &file_streaming_proto_msgTypes[0]
+	mi := &file_streaming_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -42,7 +86,7 @@ func (x *StreamRequest) String() string {
 func (*StreamRequest) ProtoMessage() {}
 
 func (x *StreamRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_streaming_proto_msgTypes[0]
+	mi := &file_streaming_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -55,7 +99,7 @@ func (x *StreamRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamRequest.ProtoReflect.Descriptor instead.
 func (*StreamRequest) Descriptor() ([]byte, []int) {
-	return file_streaming_proto_rawDescGZIP(), []int{0}
+	return file_streaming_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *StreamRequest) GetSongId() int64 {
@@ -74,7 +118,7 @@ type StreamResponse struct {
 
 func (x *StreamResponse) Reset() {
 	*x = StreamResponse{}
-	mi := &file_streaming_proto_msgTypes[1]
+	mi := &file_streaming_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -86,7 +130,7 @@ func (x *StreamResponse) String() string {
 func (*StreamResponse) ProtoMessage() {}
 
 func (x *StreamResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_streaming_proto_msgTypes[1]
+	mi := &file_streaming_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -99,7 +143,7 @@ func (x *StreamResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamResponse.ProtoReflect.Descriptor instead.
 func (*StreamResponse) Descriptor() ([]byte, []int) {
-	return file_streaming_proto_rawDescGZIP(), []int{1}
+	return file_streaming_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *StreamResponse) GetAudioChunk() []byte {
@@ -119,7 +163,7 @@ type RecordPlayRequest struct {
 
 func (x *RecordPlayRequest) Reset() {
 	*x = RecordPlayRequest{}
-	mi := &file_streaming_proto_msgTypes[2]
+	mi := &file_streaming_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -131,7 +175,7 @@ func (x *RecordPlayRequest) String() string {
 func (*RecordPlayRequest) ProtoMessage() {}
 
 func (x *RecordPlayRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_streaming_proto_msgTypes[2]
+	mi := &file_streaming_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -144,7 +188,7 @@ func (x *RecordPlayRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RecordPlayRequest.ProtoReflect.Descriptor instead.
 func (*RecordPlayRequest) Descriptor() ([]byte, []int) {
-	return file_streaming_proto_rawDescGZIP(), []int{2}
+	return file_streaming_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *RecordPlayRequest) GetUserId() int64 {
@@ -161,191 +205,7 @@ func (x *RecordPlayRequest) GetSongId() int64 {
 	return 0
 }
 
-type RecordPlayResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RecordPlayResponse) Reset() {
-	*x = RecordPlayResponse{}
-	mi := &file_streaming_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RecordPlayResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RecordPlayResponse) ProtoMessage() {}
-
-func (x *RecordPlayResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_streaming_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RecordPlayResponse.ProtoReflect.Descriptor instead.
-func (*RecordPlayResponse) Descriptor() ([]byte, []int) {
-	return file_streaming_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *RecordPlayResponse) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
-}
-
-type GetTrendingRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Limit         int32                  `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetTrendingRequest) Reset() {
-	*x = GetTrendingRequest{}
-	mi := &file_streaming_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetTrendingRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetTrendingRequest) ProtoMessage() {}
-
-func (x *GetTrendingRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_streaming_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetTrendingRequest.ProtoReflect.Descriptor instead.
-func (*GetTrendingRequest) Descriptor() ([]byte, []int) {
-	return file_streaming_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *GetTrendingRequest) GetLimit() int32 {
-	if x != nil {
-		return x.Limit
-	}
-	return 0
-}
-
-type TrendingItem struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	SongId        int64                  `protobuf:"varint,1,opt,name=song_id,json=songId,proto3" json:"song_id,omitempty"`
-	TotalPlays    int64                  `protobuf:"varint,2,opt,name=total_plays,json=totalPlays,proto3" json:"total_plays,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TrendingItem) Reset() {
-	*x = TrendingItem{}
-	mi := &file_streaming_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TrendingItem) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TrendingItem) ProtoMessage() {}
-
-func (x *TrendingItem) ProtoReflect() protoreflect.Message {
-	mi := &file_streaming_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TrendingItem.ProtoReflect.Descriptor instead.
-func (*TrendingItem) Descriptor() ([]byte, []int) {
-	return file_streaming_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *TrendingItem) GetSongId() int64 {
-	if x != nil {
-		return x.SongId
-	}
-	return 0
-}
-
-func (x *TrendingItem) GetTotalPlays() int64 {
-	if x != nil {
-		return x.TotalPlays
-	}
-	return 0
-}
-
-type GetTrendingResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Items         []*TrendingItem        `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetTrendingResponse) Reset() {
-	*x = GetTrendingResponse{}
-	mi := &file_streaming_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetTrendingResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetTrendingResponse) ProtoMessage() {}
-
-func (x *GetTrendingResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_streaming_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetTrendingResponse.ProtoReflect.Descriptor instead.
-func (*GetTrendingResponse) Descriptor() ([]byte, []int) {
-	return file_streaming_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *GetTrendingResponse) GetItems() []*TrendingItem {
-	if x != nil {
-		return x.Items
-	}
-	return nil
-}
-
-type GetHistoryRequest struct {
+type GetUserHistoryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
@@ -353,21 +213,21 @@ type GetHistoryRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetHistoryRequest) Reset() {
-	*x = GetHistoryRequest{}
-	mi := &file_streaming_proto_msgTypes[7]
+func (x *GetUserHistoryRequest) Reset() {
+	*x = GetUserHistoryRequest{}
+	mi := &file_streaming_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetHistoryRequest) String() string {
+func (x *GetUserHistoryRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetHistoryRequest) ProtoMessage() {}
+func (*GetUserHistoryRequest) ProtoMessage() {}
 
-func (x *GetHistoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_streaming_proto_msgTypes[7]
+func (x *GetUserHistoryRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_streaming_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -378,19 +238,19 @@ func (x *GetHistoryRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetHistoryRequest.ProtoReflect.Descriptor instead.
-func (*GetHistoryRequest) Descriptor() ([]byte, []int) {
-	return file_streaming_proto_rawDescGZIP(), []int{7}
+// Deprecated: Use GetUserHistoryRequest.ProtoReflect.Descriptor instead.
+func (*GetUserHistoryRequest) Descriptor() ([]byte, []int) {
+	return file_streaming_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *GetHistoryRequest) GetUserId() int64 {
+func (x *GetUserHistoryRequest) GetUserId() int64 {
 	if x != nil {
 		return x.UserId
 	}
 	return 0
 }
 
-func (x *GetHistoryRequest) GetLimit() int32 {
+func (x *GetUserHistoryRequest) GetLimit() int32 {
 	if x != nil {
 		return x.Limit
 	}
@@ -407,7 +267,7 @@ type HistoryItem struct {
 
 func (x *HistoryItem) Reset() {
 	*x = HistoryItem{}
-	mi := &file_streaming_proto_msgTypes[8]
+	mi := &file_streaming_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -419,7 +279,7 @@ func (x *HistoryItem) String() string {
 func (*HistoryItem) ProtoMessage() {}
 
 func (x *HistoryItem) ProtoReflect() protoreflect.Message {
-	mi := &file_streaming_proto_msgTypes[8]
+	mi := &file_streaming_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -432,7 +292,7 @@ func (x *HistoryItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HistoryItem.ProtoReflect.Descriptor instead.
 func (*HistoryItem) Descriptor() ([]byte, []int) {
-	return file_streaming_proto_rawDescGZIP(), []int{8}
+	return file_streaming_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *HistoryItem) GetSongId() int64 {
@@ -449,27 +309,167 @@ func (x *HistoryItem) GetPlayedAt() string {
 	return ""
 }
 
-type GetHistoryResponse struct {
+type GetUserHistoryResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	History       []*HistoryItem         `protobuf:"bytes,1,rep,name=history,proto3" json:"history,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetHistoryResponse) Reset() {
-	*x = GetHistoryResponse{}
+func (x *GetUserHistoryResponse) Reset() {
+	*x = GetUserHistoryResponse{}
+	mi := &file_streaming_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserHistoryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserHistoryResponse) ProtoMessage() {}
+
+func (x *GetUserHistoryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_streaming_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserHistoryResponse.ProtoReflect.Descriptor instead.
+func (*GetUserHistoryResponse) Descriptor() ([]byte, []int) {
+	return file_streaming_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetUserHistoryResponse) GetHistory() []*HistoryItem {
+	if x != nil {
+		return x.History
+	}
+	return nil
+}
+
+type GetTrendingRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Limit         int32                  `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetTrendingRequest) Reset() {
+	*x = GetTrendingRequest{}
+	mi := &file_streaming_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetTrendingRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTrendingRequest) ProtoMessage() {}
+
+func (x *GetTrendingRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_streaming_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTrendingRequest.ProtoReflect.Descriptor instead.
+func (*GetTrendingRequest) Descriptor() ([]byte, []int) {
+	return file_streaming_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *GetTrendingRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+type TrendingItem struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	SongId        int64                  `protobuf:"varint,1,opt,name=song_id,json=songId,proto3" json:"song_id,omitempty"`
+	PlayCount     int32                  `protobuf:"varint,2,opt,name=play_count,json=playCount,proto3" json:"play_count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TrendingItem) Reset() {
+	*x = TrendingItem{}
+	mi := &file_streaming_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TrendingItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TrendingItem) ProtoMessage() {}
+
+func (x *TrendingItem) ProtoReflect() protoreflect.Message {
+	mi := &file_streaming_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TrendingItem.ProtoReflect.Descriptor instead.
+func (*TrendingItem) Descriptor() ([]byte, []int) {
+	return file_streaming_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *TrendingItem) GetSongId() int64 {
+	if x != nil {
+		return x.SongId
+	}
+	return 0
+}
+
+func (x *TrendingItem) GetPlayCount() int32 {
+	if x != nil {
+		return x.PlayCount
+	}
+	return 0
+}
+
+type GetTrendingResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*TrendingItem        `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetTrendingResponse) Reset() {
+	*x = GetTrendingResponse{}
 	mi := &file_streaming_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetHistoryResponse) String() string {
+func (x *GetTrendingResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetHistoryResponse) ProtoMessage() {}
+func (*GetTrendingResponse) ProtoMessage() {}
 
-func (x *GetHistoryResponse) ProtoReflect() protoreflect.Message {
+func (x *GetTrendingResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_streaming_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -481,14 +481,466 @@ func (x *GetHistoryResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetHistoryResponse.ProtoReflect.Descriptor instead.
-func (*GetHistoryResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetTrendingResponse.ProtoReflect.Descriptor instead.
+func (*GetTrendingResponse) Descriptor() ([]byte, []int) {
 	return file_streaming_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *GetHistoryResponse) GetHistory() []*HistoryItem {
+func (x *GetTrendingResponse) GetItems() []*TrendingItem {
 	if x != nil {
-		return x.History
+		return x.Items
+	}
+	return nil
+}
+
+type CreatePlaylistRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreatePlaylistRequest) Reset() {
+	*x = CreatePlaylistRequest{}
+	mi := &file_streaming_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreatePlaylistRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreatePlaylistRequest) ProtoMessage() {}
+
+func (x *CreatePlaylistRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_streaming_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreatePlaylistRequest.ProtoReflect.Descriptor instead.
+func (*CreatePlaylistRequest) Descriptor() ([]byte, []int) {
+	return file_streaming_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *CreatePlaylistRequest) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *CreatePlaylistRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+type CreatePlaylistResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlaylistId    int64                  `protobuf:"varint,1,opt,name=playlist_id,json=playlistId,proto3" json:"playlist_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreatePlaylistResponse) Reset() {
+	*x = CreatePlaylistResponse{}
+	mi := &file_streaming_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreatePlaylistResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreatePlaylistResponse) ProtoMessage() {}
+
+func (x *CreatePlaylistResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_streaming_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreatePlaylistResponse.ProtoReflect.Descriptor instead.
+func (*CreatePlaylistResponse) Descriptor() ([]byte, []int) {
+	return file_streaming_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *CreatePlaylistResponse) GetPlaylistId() int64 {
+	if x != nil {
+		return x.PlaylistId
+	}
+	return 0
+}
+
+type GetPlaylistRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlaylistId    int64                  `protobuf:"varint,1,opt,name=playlist_id,json=playlistId,proto3" json:"playlist_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetPlaylistRequest) Reset() {
+	*x = GetPlaylistRequest{}
+	mi := &file_streaming_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPlaylistRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPlaylistRequest) ProtoMessage() {}
+
+func (x *GetPlaylistRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_streaming_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPlaylistRequest.ProtoReflect.Descriptor instead.
+func (*GetPlaylistRequest) Descriptor() ([]byte, []int) {
+	return file_streaming_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *GetPlaylistRequest) GetPlaylistId() int64 {
+	if x != nil {
+		return x.PlaylistId
+	}
+	return 0
+}
+
+type GetPlaylistResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlaylistId    int64                  `protobuf:"varint,1,opt,name=playlist_id,json=playlistId,proto3" json:"playlist_id,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	SongIds       []int64                `protobuf:"varint,3,rep,packed,name=song_ids,json=songIds,proto3" json:"song_ids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetPlaylistResponse) Reset() {
+	*x = GetPlaylistResponse{}
+	mi := &file_streaming_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPlaylistResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPlaylistResponse) ProtoMessage() {}
+
+func (x *GetPlaylistResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_streaming_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPlaylistResponse.ProtoReflect.Descriptor instead.
+func (*GetPlaylistResponse) Descriptor() ([]byte, []int) {
+	return file_streaming_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *GetPlaylistResponse) GetPlaylistId() int64 {
+	if x != nil {
+		return x.PlaylistId
+	}
+	return 0
+}
+
+func (x *GetPlaylistResponse) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *GetPlaylistResponse) GetSongIds() []int64 {
+	if x != nil {
+		return x.SongIds
+	}
+	return nil
+}
+
+type ModifyPlaylistRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlaylistId    int64                  `protobuf:"varint,1,opt,name=playlist_id,json=playlistId,proto3" json:"playlist_id,omitempty"`
+	SongId        int64                  `protobuf:"varint,2,opt,name=song_id,json=songId,proto3" json:"song_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ModifyPlaylistRequest) Reset() {
+	*x = ModifyPlaylistRequest{}
+	mi := &file_streaming_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ModifyPlaylistRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ModifyPlaylistRequest) ProtoMessage() {}
+
+func (x *ModifyPlaylistRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_streaming_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ModifyPlaylistRequest.ProtoReflect.Descriptor instead.
+func (*ModifyPlaylistRequest) Descriptor() ([]byte, []int) {
+	return file_streaming_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *ModifyPlaylistRequest) GetPlaylistId() int64 {
+	if x != nil {
+		return x.PlaylistId
+	}
+	return 0
+}
+
+func (x *ModifyPlaylistRequest) GetSongId() int64 {
+	if x != nil {
+		return x.SongId
+	}
+	return 0
+}
+
+type DeletePlaylistRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlaylistId    int64                  `protobuf:"varint,1,opt,name=playlist_id,json=playlistId,proto3" json:"playlist_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeletePlaylistRequest) Reset() {
+	*x = DeletePlaylistRequest{}
+	mi := &file_streaming_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeletePlaylistRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeletePlaylistRequest) ProtoMessage() {}
+
+func (x *DeletePlaylistRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_streaming_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeletePlaylistRequest.ProtoReflect.Descriptor instead.
+func (*DeletePlaylistRequest) Descriptor() ([]byte, []int) {
+	return file_streaming_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *DeletePlaylistRequest) GetPlaylistId() int64 {
+	if x != nil {
+		return x.PlaylistId
+	}
+	return 0
+}
+
+type LikeSongRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	SongId        int64                  `protobuf:"varint,2,opt,name=song_id,json=songId,proto3" json:"song_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LikeSongRequest) Reset() {
+	*x = LikeSongRequest{}
+	mi := &file_streaming_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LikeSongRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LikeSongRequest) ProtoMessage() {}
+
+func (x *LikeSongRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_streaming_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LikeSongRequest.ProtoReflect.Descriptor instead.
+func (*LikeSongRequest) Descriptor() ([]byte, []int) {
+	return file_streaming_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *LikeSongRequest) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *LikeSongRequest) GetSongId() int64 {
+	if x != nil {
+		return x.SongId
+	}
+	return 0
+}
+
+type GetLikedSongsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetLikedSongsRequest) Reset() {
+	*x = GetLikedSongsRequest{}
+	mi := &file_streaming_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetLikedSongsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetLikedSongsRequest) ProtoMessage() {}
+
+func (x *GetLikedSongsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_streaming_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetLikedSongsRequest.ProtoReflect.Descriptor instead.
+func (*GetLikedSongsRequest) Descriptor() ([]byte, []int) {
+	return file_streaming_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *GetLikedSongsRequest) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *GetLikedSongsRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *GetLikedSongsRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+type GetLikedSongsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	SongIds       []int64                `protobuf:"varint,1,rep,packed,name=song_ids,json=songIds,proto3" json:"song_ids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetLikedSongsResponse) Reset() {
+	*x = GetLikedSongsResponse{}
+	mi := &file_streaming_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetLikedSongsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetLikedSongsResponse) ProtoMessage() {}
+
+func (x *GetLikedSongsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_streaming_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetLikedSongsResponse.ProtoReflect.Descriptor instead.
+func (*GetLikedSongsResponse) Descriptor() ([]byte, []int) {
+	return file_streaming_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *GetLikedSongsResponse) GetSongIds() []int64 {
+	if x != nil {
+		return x.SongIds
 	}
 	return nil
 }
@@ -497,7 +949,9 @@ var File_streaming_proto protoreflect.FileDescriptor
 
 const file_streaming_proto_rawDesc = "" +
 	"\n" +
-	"\x0fstreaming.proto\x12\tstreaming\"(\n" +
+	"\x0fstreaming.proto\x12\tstreaming\"+\n" +
+	"\x0fSuccessResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"(\n" +
 	"\rStreamRequest\x12\x17\n" +
 	"\asong_id\x18\x01 \x01(\x03R\x06songId\"1\n" +
 	"\x0eStreamResponse\x12\x1f\n" +
@@ -505,31 +959,68 @@ const file_streaming_proto_rawDesc = "" +
 	"audioChunk\"E\n" +
 	"\x11RecordPlayRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x17\n" +
-	"\asong_id\x18\x02 \x01(\x03R\x06songId\".\n" +
-	"\x12RecordPlayResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"*\n" +
-	"\x12GetTrendingRequest\x12\x14\n" +
-	"\x05limit\x18\x01 \x01(\x05R\x05limit\"H\n" +
-	"\fTrendingItem\x12\x17\n" +
-	"\asong_id\x18\x01 \x01(\x03R\x06songId\x12\x1f\n" +
-	"\vtotal_plays\x18\x02 \x01(\x03R\n" +
-	"totalPlays\"D\n" +
-	"\x13GetTrendingResponse\x12-\n" +
-	"\x05items\x18\x01 \x03(\v2\x17.streaming.TrendingItemR\x05items\"B\n" +
-	"\x11GetHistoryRequest\x12\x17\n" +
+	"\asong_id\x18\x02 \x01(\x03R\x06songId\"F\n" +
+	"\x15GetUserHistoryRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\"C\n" +
 	"\vHistoryItem\x12\x17\n" +
 	"\asong_id\x18\x01 \x01(\x03R\x06songId\x12\x1b\n" +
-	"\tplayed_at\x18\x02 \x01(\tR\bplayedAt\"F\n" +
-	"\x12GetHistoryResponse\x120\n" +
-	"\ahistory\x18\x01 \x03(\v2\x16.streaming.HistoryItemR\ahistory2\xc0\x02\n" +
-	"\x10StreamingService\x12D\n" +
-	"\vStreamAudio\x12\x18.streaming.StreamRequest\x1a\x19.streaming.StreamResponse0\x01\x12I\n" +
+	"\tplayed_at\x18\x02 \x01(\tR\bplayedAt\"J\n" +
+	"\x16GetUserHistoryResponse\x120\n" +
+	"\ahistory\x18\x01 \x03(\v2\x16.streaming.HistoryItemR\ahistory\"*\n" +
+	"\x12GetTrendingRequest\x12\x14\n" +
+	"\x05limit\x18\x01 \x01(\x05R\x05limit\"F\n" +
+	"\fTrendingItem\x12\x17\n" +
+	"\asong_id\x18\x01 \x01(\x03R\x06songId\x12\x1d\n" +
 	"\n" +
-	"RecordPlay\x12\x1c.streaming.RecordPlayRequest\x1a\x1d.streaming.RecordPlayResponse\x12L\n" +
-	"\vGetTrending\x12\x1d.streaming.GetTrendingRequest\x1a\x1e.streaming.GetTrendingResponse\x12M\n" +
-	"\x0eGetUserHistory\x12\x1c.streaming.GetHistoryRequest\x1a\x1d.streaming.GetHistoryResponseB-Z+github.com/Adiilkwz/music-grpc-go/streamingb\x06proto3"
+	"play_count\x18\x02 \x01(\x05R\tplayCount\"D\n" +
+	"\x13GetTrendingResponse\x12-\n" +
+	"\x05items\x18\x01 \x03(\v2\x17.streaming.TrendingItemR\x05items\"F\n" +
+	"\x15CreatePlaylistRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\"9\n" +
+	"\x16CreatePlaylistResponse\x12\x1f\n" +
+	"\vplaylist_id\x18\x01 \x01(\x03R\n" +
+	"playlistId\"5\n" +
+	"\x12GetPlaylistRequest\x12\x1f\n" +
+	"\vplaylist_id\x18\x01 \x01(\x03R\n" +
+	"playlistId\"g\n" +
+	"\x13GetPlaylistResponse\x12\x1f\n" +
+	"\vplaylist_id\x18\x01 \x01(\x03R\n" +
+	"playlistId\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12\x19\n" +
+	"\bsong_ids\x18\x03 \x03(\x03R\asongIds\"Q\n" +
+	"\x15ModifyPlaylistRequest\x12\x1f\n" +
+	"\vplaylist_id\x18\x01 \x01(\x03R\n" +
+	"playlistId\x12\x17\n" +
+	"\asong_id\x18\x02 \x01(\x03R\x06songId\"8\n" +
+	"\x15DeletePlaylistRequest\x12\x1f\n" +
+	"\vplaylist_id\x18\x01 \x01(\x03R\n" +
+	"playlistId\"C\n" +
+	"\x0fLikeSongRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x17\n" +
+	"\asong_id\x18\x02 \x01(\x03R\x06songId\"]\n" +
+	"\x14GetLikedSongsRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\"2\n" +
+	"\x15GetLikedSongsResponse\x12\x19\n" +
+	"\bsong_ids\x18\x01 \x03(\x03R\asongIds2\xc8\a\n" +
+	"\x10StreamingService\x12D\n" +
+	"\vStreamAudio\x12\x18.streaming.StreamRequest\x1a\x19.streaming.StreamResponse0\x01\x12F\n" +
+	"\n" +
+	"RecordPlay\x12\x1c.streaming.RecordPlayRequest\x1a\x1a.streaming.SuccessResponse\x12U\n" +
+	"\x0eGetUserHistory\x12 .streaming.GetUserHistoryRequest\x1a!.streaming.GetUserHistoryResponse\x12Q\n" +
+	"\x10GetTrendingSongs\x12\x1d.streaming.GetTrendingRequest\x1a\x1e.streaming.GetTrendingResponse\x12U\n" +
+	"\x0eCreatePlaylist\x12 .streaming.CreatePlaylistRequest\x1a!.streaming.CreatePlaylistResponse\x12L\n" +
+	"\vGetPlaylist\x12\x1d.streaming.GetPlaylistRequest\x1a\x1e.streaming.GetPlaylistResponse\x12Q\n" +
+	"\x11AddSongToPlaylist\x12 .streaming.ModifyPlaylistRequest\x1a\x1a.streaming.SuccessResponse\x12V\n" +
+	"\x16RemoveSongFromPlaylist\x12 .streaming.ModifyPlaylistRequest\x1a\x1a.streaming.SuccessResponse\x12N\n" +
+	"\x0eDeletePlaylist\x12 .streaming.DeletePlaylistRequest\x1a\x1a.streaming.SuccessResponse\x12B\n" +
+	"\bLikeSong\x12\x1a.streaming.LikeSongRequest\x1a\x1a.streaming.SuccessResponse\x12D\n" +
+	"\n" +
+	"UnlikeSong\x12\x1a.streaming.LikeSongRequest\x1a\x1a.streaming.SuccessResponse\x12R\n" +
+	"\rGetLikedSongs\x12\x1f.streaming.GetLikedSongsRequest\x1a .streaming.GetLikedSongsResponseB-Z+github.com/Adiilkwz/music-grpc-go/streamingb\x06proto3"
 
 var (
 	file_streaming_proto_rawDescOnce sync.Once
@@ -543,35 +1034,60 @@ func file_streaming_proto_rawDescGZIP() []byte {
 	return file_streaming_proto_rawDescData
 }
 
-var file_streaming_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_streaming_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
 var file_streaming_proto_goTypes = []any{
-	(*StreamRequest)(nil),       // 0: streaming.StreamRequest
-	(*StreamResponse)(nil),      // 1: streaming.StreamResponse
-	(*RecordPlayRequest)(nil),   // 2: streaming.RecordPlayRequest
-	(*RecordPlayResponse)(nil),  // 3: streaming.RecordPlayResponse
-	(*GetTrendingRequest)(nil),  // 4: streaming.GetTrendingRequest
-	(*TrendingItem)(nil),        // 5: streaming.TrendingItem
-	(*GetTrendingResponse)(nil), // 6: streaming.GetTrendingResponse
-	(*GetHistoryRequest)(nil),   // 7: streaming.GetHistoryRequest
-	(*HistoryItem)(nil),         // 8: streaming.HistoryItem
-	(*GetHistoryResponse)(nil),  // 9: streaming.GetHistoryResponse
+	(*SuccessResponse)(nil),        // 0: streaming.SuccessResponse
+	(*StreamRequest)(nil),          // 1: streaming.StreamRequest
+	(*StreamResponse)(nil),         // 2: streaming.StreamResponse
+	(*RecordPlayRequest)(nil),      // 3: streaming.RecordPlayRequest
+	(*GetUserHistoryRequest)(nil),  // 4: streaming.GetUserHistoryRequest
+	(*HistoryItem)(nil),            // 5: streaming.HistoryItem
+	(*GetUserHistoryResponse)(nil), // 6: streaming.GetUserHistoryResponse
+	(*GetTrendingRequest)(nil),     // 7: streaming.GetTrendingRequest
+	(*TrendingItem)(nil),           // 8: streaming.TrendingItem
+	(*GetTrendingResponse)(nil),    // 9: streaming.GetTrendingResponse
+	(*CreatePlaylistRequest)(nil),  // 10: streaming.CreatePlaylistRequest
+	(*CreatePlaylistResponse)(nil), // 11: streaming.CreatePlaylistResponse
+	(*GetPlaylistRequest)(nil),     // 12: streaming.GetPlaylistRequest
+	(*GetPlaylistResponse)(nil),    // 13: streaming.GetPlaylistResponse
+	(*ModifyPlaylistRequest)(nil),  // 14: streaming.ModifyPlaylistRequest
+	(*DeletePlaylistRequest)(nil),  // 15: streaming.DeletePlaylistRequest
+	(*LikeSongRequest)(nil),        // 16: streaming.LikeSongRequest
+	(*GetLikedSongsRequest)(nil),   // 17: streaming.GetLikedSongsRequest
+	(*GetLikedSongsResponse)(nil),  // 18: streaming.GetLikedSongsResponse
 }
 var file_streaming_proto_depIdxs = []int32{
-	5, // 0: streaming.GetTrendingResponse.items:type_name -> streaming.TrendingItem
-	8, // 1: streaming.GetHistoryResponse.history:type_name -> streaming.HistoryItem
-	0, // 2: streaming.StreamingService.StreamAudio:input_type -> streaming.StreamRequest
-	2, // 3: streaming.StreamingService.RecordPlay:input_type -> streaming.RecordPlayRequest
-	4, // 4: streaming.StreamingService.GetTrending:input_type -> streaming.GetTrendingRequest
-	7, // 5: streaming.StreamingService.GetUserHistory:input_type -> streaming.GetHistoryRequest
-	1, // 6: streaming.StreamingService.StreamAudio:output_type -> streaming.StreamResponse
-	3, // 7: streaming.StreamingService.RecordPlay:output_type -> streaming.RecordPlayResponse
-	6, // 8: streaming.StreamingService.GetTrending:output_type -> streaming.GetTrendingResponse
-	9, // 9: streaming.StreamingService.GetUserHistory:output_type -> streaming.GetHistoryResponse
-	6, // [6:10] is the sub-list for method output_type
-	2, // [2:6] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	5,  // 0: streaming.GetUserHistoryResponse.history:type_name -> streaming.HistoryItem
+	8,  // 1: streaming.GetTrendingResponse.items:type_name -> streaming.TrendingItem
+	1,  // 2: streaming.StreamingService.StreamAudio:input_type -> streaming.StreamRequest
+	3,  // 3: streaming.StreamingService.RecordPlay:input_type -> streaming.RecordPlayRequest
+	4,  // 4: streaming.StreamingService.GetUserHistory:input_type -> streaming.GetUserHistoryRequest
+	7,  // 5: streaming.StreamingService.GetTrendingSongs:input_type -> streaming.GetTrendingRequest
+	10, // 6: streaming.StreamingService.CreatePlaylist:input_type -> streaming.CreatePlaylistRequest
+	12, // 7: streaming.StreamingService.GetPlaylist:input_type -> streaming.GetPlaylistRequest
+	14, // 8: streaming.StreamingService.AddSongToPlaylist:input_type -> streaming.ModifyPlaylistRequest
+	14, // 9: streaming.StreamingService.RemoveSongFromPlaylist:input_type -> streaming.ModifyPlaylistRequest
+	15, // 10: streaming.StreamingService.DeletePlaylist:input_type -> streaming.DeletePlaylistRequest
+	16, // 11: streaming.StreamingService.LikeSong:input_type -> streaming.LikeSongRequest
+	16, // 12: streaming.StreamingService.UnlikeSong:input_type -> streaming.LikeSongRequest
+	17, // 13: streaming.StreamingService.GetLikedSongs:input_type -> streaming.GetLikedSongsRequest
+	2,  // 14: streaming.StreamingService.StreamAudio:output_type -> streaming.StreamResponse
+	0,  // 15: streaming.StreamingService.RecordPlay:output_type -> streaming.SuccessResponse
+	6,  // 16: streaming.StreamingService.GetUserHistory:output_type -> streaming.GetUserHistoryResponse
+	9,  // 17: streaming.StreamingService.GetTrendingSongs:output_type -> streaming.GetTrendingResponse
+	11, // 18: streaming.StreamingService.CreatePlaylist:output_type -> streaming.CreatePlaylistResponse
+	13, // 19: streaming.StreamingService.GetPlaylist:output_type -> streaming.GetPlaylistResponse
+	0,  // 20: streaming.StreamingService.AddSongToPlaylist:output_type -> streaming.SuccessResponse
+	0,  // 21: streaming.StreamingService.RemoveSongFromPlaylist:output_type -> streaming.SuccessResponse
+	0,  // 22: streaming.StreamingService.DeletePlaylist:output_type -> streaming.SuccessResponse
+	0,  // 23: streaming.StreamingService.LikeSong:output_type -> streaming.SuccessResponse
+	0,  // 24: streaming.StreamingService.UnlikeSong:output_type -> streaming.SuccessResponse
+	18, // 25: streaming.StreamingService.GetLikedSongs:output_type -> streaming.GetLikedSongsResponse
+	14, // [14:26] is the sub-list for method output_type
+	2,  // [2:14] is the sub-list for method input_type
+	2,  // [2:2] is the sub-list for extension type_name
+	2,  // [2:2] is the sub-list for extension extendee
+	0,  // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_streaming_proto_init() }
@@ -585,7 +1101,7 @@ func file_streaming_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_streaming_proto_rawDesc), len(file_streaming_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   10,
+			NumMessages:   19,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
