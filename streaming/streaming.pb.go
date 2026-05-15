@@ -767,7 +767,7 @@ func (x *DeletePlaylistRequest) GetPlaylistId() int64 {
 
 type LikeSongRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	SongId        int64                  `protobuf:"varint,2,opt,name=song_id,json=songId,proto3" json:"song_id,omitempty"`
+	SongId        int64                  `protobuf:"varint,1,opt,name=song_id,json=songId,proto3" json:"song_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -811,8 +811,8 @@ func (x *LikeSongRequest) GetSongId() int64 {
 
 type GetLikedSongsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
-	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
+	Limit         int32                  `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -955,10 +955,10 @@ const file_streaming_proto_rawDesc = "" +
 	"\vplaylist_id\x18\x01 \x01(\x03R\n" +
 	"playlistId\"*\n" +
 	"\x0fLikeSongRequest\x12\x17\n" +
-	"\asong_id\x18\x02 \x01(\x03R\x06songId\"D\n" +
+	"\asong_id\x18\x01 \x01(\x03R\x06songId\"D\n" +
 	"\x14GetLikedSongsRequest\x12\x14\n" +
-	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x03 \x01(\x05R\x06offset\"2\n" +
+	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x02 \x01(\x05R\x06offset\"2\n" +
 	"\x15GetLikedSongsResponse\x12\x19\n" +
 	"\bsong_ids\x18\x01 \x03(\x03R\asongIds2\xc8\a\n" +
 	"\x10StreamingService\x12D\n" +
