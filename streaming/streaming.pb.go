@@ -155,7 +155,6 @@ func (x *StreamResponse) GetAudioChunk() []byte {
 
 type RecordPlayRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	SongId        int64                  `protobuf:"varint,2,opt,name=song_id,json=songId,proto3" json:"song_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -191,13 +190,6 @@ func (*RecordPlayRequest) Descriptor() ([]byte, []int) {
 	return file_streaming_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *RecordPlayRequest) GetUserId() int64 {
-	if x != nil {
-		return x.UserId
-	}
-	return 0
-}
-
 func (x *RecordPlayRequest) GetSongId() int64 {
 	if x != nil {
 		return x.SongId
@@ -207,7 +199,6 @@ func (x *RecordPlayRequest) GetSongId() int64 {
 
 type GetUserHistoryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -241,13 +232,6 @@ func (x *GetUserHistoryRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use GetUserHistoryRequest.ProtoReflect.Descriptor instead.
 func (*GetUserHistoryRequest) Descriptor() ([]byte, []int) {
 	return file_streaming_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *GetUserHistoryRequest) GetUserId() int64 {
-	if x != nil {
-		return x.UserId
-	}
-	return 0
 }
 
 func (x *GetUserHistoryRequest) GetLimit() int32 {
@@ -495,7 +479,6 @@ func (x *GetTrendingResponse) GetItems() []*TrendingItem {
 
 type CreatePlaylistRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -529,13 +512,6 @@ func (x *CreatePlaylistRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use CreatePlaylistRequest.ProtoReflect.Descriptor instead.
 func (*CreatePlaylistRequest) Descriptor() ([]byte, []int) {
 	return file_streaming_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *CreatePlaylistRequest) GetUserId() int64 {
-	if x != nil {
-		return x.UserId
-	}
-	return 0
 }
 
 func (x *CreatePlaylistRequest) GetTitle() string {
@@ -791,7 +767,6 @@ func (x *DeletePlaylistRequest) GetPlaylistId() int64 {
 
 type LikeSongRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	SongId        int64                  `protobuf:"varint,2,opt,name=song_id,json=songId,proto3" json:"song_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -827,13 +802,6 @@ func (*LikeSongRequest) Descriptor() ([]byte, []int) {
 	return file_streaming_proto_rawDescGZIP(), []int{16}
 }
 
-func (x *LikeSongRequest) GetUserId() int64 {
-	if x != nil {
-		return x.UserId
-	}
-	return 0
-}
-
 func (x *LikeSongRequest) GetSongId() int64 {
 	if x != nil {
 		return x.SongId
@@ -843,7 +811,6 @@ func (x *LikeSongRequest) GetSongId() int64 {
 
 type GetLikedSongsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -878,13 +845,6 @@ func (x *GetLikedSongsRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use GetLikedSongsRequest.ProtoReflect.Descriptor instead.
 func (*GetLikedSongsRequest) Descriptor() ([]byte, []int) {
 	return file_streaming_proto_rawDescGZIP(), []int{17}
-}
-
-func (x *GetLikedSongsRequest) GetUserId() int64 {
-	if x != nil {
-		return x.UserId
-	}
-	return 0
 }
 
 func (x *GetLikedSongsRequest) GetLimit() int32 {
@@ -956,12 +916,10 @@ const file_streaming_proto_rawDesc = "" +
 	"\asong_id\x18\x01 \x01(\x03R\x06songId\"1\n" +
 	"\x0eStreamResponse\x12\x1f\n" +
 	"\vaudio_chunk\x18\x01 \x01(\fR\n" +
-	"audioChunk\"E\n" +
+	"audioChunk\",\n" +
 	"\x11RecordPlayRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x17\n" +
-	"\asong_id\x18\x02 \x01(\x03R\x06songId\"F\n" +
-	"\x15GetUserHistoryRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x14\n" +
+	"\asong_id\x18\x02 \x01(\x03R\x06songId\"-\n" +
+	"\x15GetUserHistoryRequest\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\"C\n" +
 	"\vHistoryItem\x12\x17\n" +
 	"\asong_id\x18\x01 \x01(\x03R\x06songId\x12\x1b\n" +
@@ -975,9 +933,8 @@ const file_streaming_proto_rawDesc = "" +
 	"\n" +
 	"play_count\x18\x02 \x01(\x05R\tplayCount\"D\n" +
 	"\x13GetTrendingResponse\x12-\n" +
-	"\x05items\x18\x01 \x03(\v2\x17.streaming.TrendingItemR\x05items\"F\n" +
-	"\x15CreatePlaylistRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x14\n" +
+	"\x05items\x18\x01 \x03(\v2\x17.streaming.TrendingItemR\x05items\"-\n" +
+	"\x15CreatePlaylistRequest\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\"9\n" +
 	"\x16CreatePlaylistResponse\x12\x1f\n" +
 	"\vplaylist_id\x18\x01 \x01(\x03R\n" +
@@ -996,12 +953,10 @@ const file_streaming_proto_rawDesc = "" +
 	"\asong_id\x18\x02 \x01(\x03R\x06songId\"8\n" +
 	"\x15DeletePlaylistRequest\x12\x1f\n" +
 	"\vplaylist_id\x18\x01 \x01(\x03R\n" +
-	"playlistId\"C\n" +
+	"playlistId\"*\n" +
 	"\x0fLikeSongRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x17\n" +
-	"\asong_id\x18\x02 \x01(\x03R\x06songId\"]\n" +
-	"\x14GetLikedSongsRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x14\n" +
+	"\asong_id\x18\x02 \x01(\x03R\x06songId\"D\n" +
+	"\x14GetLikedSongsRequest\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x03 \x01(\x05R\x06offset\"2\n" +
 	"\x15GetLikedSongsResponse\x12\x19\n" +

@@ -655,7 +655,6 @@ func (x *ConfirmResetRequest) GetNewPassword() string {
 
 type GetProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -688,13 +687,6 @@ func (x *GetProfileRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use GetProfileRequest.ProtoReflect.Descriptor instead.
 func (*GetProfileRequest) Descriptor() ([]byte, []int) {
 	return file_auth_proto_rawDescGZIP(), []int{12}
-}
-
-func (x *GetProfileRequest) GetUserId() int64 {
-	if x != nil {
-		return x.UserId
-	}
-	return 0
 }
 
 type GetProfileResponse struct {
@@ -827,7 +819,6 @@ func (x *UpdateProfileRequest) GetAvatarUrl() string {
 
 type DeleteAccountRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -860,13 +851,6 @@ func (x *DeleteAccountRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use DeleteAccountRequest.ProtoReflect.Descriptor instead.
 func (*DeleteAccountRequest) Descriptor() ([]byte, []int) {
 	return file_auth_proto_rawDescGZIP(), []int{15}
-}
-
-func (x *DeleteAccountRequest) GetUserId() int64 {
-	if x != nil {
-		return x.UserId
-	}
-	return 0
 }
 
 type ListUsersRequest struct {
@@ -1035,9 +1019,8 @@ func (x *ListUsersResponse) GetUsers() []*UserItem {
 
 type UpdateUserRoleRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	AdminId       int64                  `protobuf:"varint,1,opt,name=admin_id,json=adminId,proto3" json:"admin_id,omitempty"`
-	TargetUserId  int64                  `protobuf:"varint,2,opt,name=target_user_id,json=targetUserId,proto3" json:"target_user_id,omitempty"`
-	NewRole       string                 `protobuf:"bytes,3,opt,name=new_role,json=newRole,proto3" json:"new_role,omitempty"`
+	TargetUserId  int64                  `protobuf:"varint,1,opt,name=target_user_id,json=targetUserId,proto3" json:"target_user_id,omitempty"`
+	NewRole       string                 `protobuf:"bytes,2,opt,name=new_role,json=newRole,proto3" json:"new_role,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1070,13 +1053,6 @@ func (x *UpdateUserRoleRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use UpdateUserRoleRequest.ProtoReflect.Descriptor instead.
 func (*UpdateUserRoleRequest) Descriptor() ([]byte, []int) {
 	return file_auth_proto_rawDescGZIP(), []int{19}
-}
-
-func (x *UpdateUserRoleRequest) GetAdminId() int64 {
-	if x != nil {
-		return x.AdminId
-	}
-	return 0
 }
 
 func (x *UpdateUserRoleRequest) GetTargetUserId() int64 {
@@ -1136,9 +1112,8 @@ const file_auth_proto_rawDesc = "" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1d\n" +
 	"\n" +
 	"reset_code\x18\x02 \x01(\tR\tresetCode\x12!\n" +
-	"\fnew_password\x18\x03 \x01(\tR\vnewPassword\",\n" +
-	"\x11GetProfileRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\"z\n" +
+	"\fnew_password\x18\x03 \x01(\tR\vnewPassword\"\x13\n" +
+	"\x11GetProfileRequest\"z\n" +
 	"\x12GetProfileResponse\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12!\n" +
@@ -1148,9 +1123,8 @@ const file_auth_proto_rawDesc = "" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12!\n" +
 	"\fdisplay_name\x18\x02 \x01(\tR\vdisplayName\x12\x1d\n" +
 	"\n" +
-	"avatar_url\x18\x03 \x01(\tR\tavatarUrl\"/\n" +
-	"\x14DeleteAccountRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\"@\n" +
+	"avatar_url\x18\x03 \x01(\tR\tavatarUrl\"\x16\n" +
+	"\x14DeleteAccountRequest\"@\n" +
 	"\x10ListUsersRequest\x12\x14\n" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x02 \x01(\x05R\x06offset\"g\n" +
@@ -1160,11 +1134,10 @@ const file_auth_proto_rawDesc = "" +
 	"\fdisplay_name\x18\x03 \x01(\tR\vdisplayName\x12\x12\n" +
 	"\x04role\x18\x04 \x01(\tR\x04role\"9\n" +
 	"\x11ListUsersResponse\x12$\n" +
-	"\x05users\x18\x01 \x03(\v2\x0e.auth.UserItemR\x05users\"s\n" +
-	"\x15UpdateUserRoleRequest\x12\x19\n" +
-	"\badmin_id\x18\x01 \x01(\x03R\aadminId\x12$\n" +
-	"\x0etarget_user_id\x18\x02 \x01(\x03R\ftargetUserId\x12\x19\n" +
-	"\bnew_role\x18\x03 \x01(\tR\anewRole2\xac\x06\n" +
+	"\x05users\x18\x01 \x03(\v2\x0e.auth.UserItemR\x05users\"X\n" +
+	"\x15UpdateUserRoleRequest\x12$\n" +
+	"\x0etarget_user_id\x18\x01 \x01(\x03R\ftargetUserId\x12\x19\n" +
+	"\bnew_role\x18\x02 \x01(\tR\anewRole2\xac\x06\n" +
 	"\vAuthService\x129\n" +
 	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.auth.RegisterResponse\x120\n" +
 	"\x05Login\x12\x12.auth.LoginRequest\x1a\x13.auth.LoginResponse\x12H\n" +
